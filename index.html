@@ -55,48 +55,101 @@
     <meta name="msvalidate.01" content="88A4579ED9CDAA5850E9A658AAEFB123" />
     <!-- Maintenance of tracking data by Watson Shih -->
 
-    <link rel="stylesheet" href="https://rpb204.nsysu.edu.tw/static/file/367/1367/img/4571/stu_sys_style.css">
+    <link rel="stylesheet" href="stu_sys_style.css">
 </head>
 
 <body>
-    <div class="header">
-        <div><a href="/" target="_self"><img alt="西灣我課 We carry, We care｜西灣學院 Si Wan College" class="headlogo" height=""
+    <div class="header" id="top">
+        <div><a href="https://bookho.nsysu.edu.tw/" target="_self"><img alt="西灣我課 We carry, We care｜西灣學院 Si Wan College"
+                    class="headlogo" height=""
                     src="https://rpb204.nsysu.edu.tw/static/file/367/1367/img/4571/wcwc-logo-all-color.svg"
                     width="200px"></a></div>
         <div class="action-buttons">
             <md-filled-text-field id="courseId" label="申請課程編號 (自動產生)" readonly>
             </md-filled-text-field>
-            <md-filled-button id="saveButton">儲存申請單</md-filled-button>
+            <md-filled-button id="saveButton">下載申請單</md-filled-button>
             <md-outlined-button id="loadButton">讀取申請單</md-filled-button>
                 <input type="file" id="fileInput" accept=".json" style="display: none">
         </div>
     </div>
     <h1>學生募課趣 - 尋找跨域學習夥伴申請單</h1>
-    <p>請填寫以下資料，完成填寫後，請按下「儲存申請單」按鈕，並將申請單提供給承辦人員。</p>
-    <p>想要修改之前儲存的申請單，請按下「讀取申請單」按鈕，上傳之前儲存的申請單檔案。</p>
-    <p>請注意：本網站不會儲存任何資料，如果無法一次完成填寫，請先儲存申請單，下次再讀取繼續填寫。</p>
+    <p>請填寫以下資料，完成填寫後，請按下「下載申請單」按鈕，並將申請單提供給承辦人員。</p>
+    <p>想要修改之前下載的申請單，請按下「讀取申請單」按鈕，上傳之前儲存的申請單檔案。</p>
+    <p>請注意：本網站不會保存任何資料，如果無法一次完成填寫，請先下載申請單，下次再讀取繼續填寫。</p>
 
     <form id="courseForm" onsubmit="return false;">
         <!-- 基本資訊區塊 -->
         <div class="form-section">
-            <h2>基本資訊</h2>
+            <h2>提案人資訊</h2>
+            <div class="form-row">
+                <md-outlined-text-field id="applyName" label="提案人" placeholder="請填寫全名">
+                </md-outlined-text-field>
+                <md-outlined-text-field id="applyId" label="提案人學號" placeholder="BXXXXXXXXX">
+                </md-outlined-text-field>
+                <md-outlined-text-field id="applyDepartment" label="提案人系級" placeholder="XX系(所) 大X">
+                </md-outlined-text-field>
+            </div>
+            <div class="form-row">
+                <md-outlined-text-field id="applyPhone" label="提案人聯絡電話" type="number" placeholder="09XXXXXXXX">
+                </md-outlined-text-field>
+                <md-outlined-text-field id="applyMail" label="提案人 E-mail" type="email" placeholder="XXX@gmail.com">
+                </md-outlined-text-field>
+            </div>
+
+            <h2>課程基本資訊</h2>
             <div class="form-row">
                 <md-outlined-text-field id="courseName" label="課程名稱">
                 </md-outlined-text-field>
             </div>
-
             <div class="registration-period">
-                <md-outlined-text-field id="courseHours" label="預計每次上課時數" suffix-text="小時"></md-outlined-text-field>
                 <div class="date-picker-container">
-                    <label for="registrationStart">預計報名開始日期</label>
-                    <input type="date" id="registrationStart" class="date-picker">
+                    <label>預計活動辦理日期</label>
+                    <md-outlined-text-field id="registrationYear" label="年" type="number" value="Short" suffix-text="年"
+                        errorText="應填寫正確年份">
+                    </md-outlined-text-field>
                 </div>
                 <div class="date-picker-container">
-                    <label for="registrationEnd">預計報名截止日期</label>
-                    <input type="date" id="registrationEnd" class="date-picker">
+                    <label> </label>
+                    <md-outlined-select id="registrationMonth" label="月">
+                        <md-select-option value="1">
+                            <div slot="headline">1</div>
+                        </md-select-option>
+                        <md-select-option value="2">
+                            <div slot="headline">2</div>
+                        </md-select-option>
+                        <md-select-option value="3">
+                            <div slot="headline">3</div>
+                        </md-select-option>
+                        <md-select-option value="4">
+                            <div slot="headline">4</div>
+                        </md-select-option>
+                        <md-select-option value="5">
+                            <div slot="headline">5</div>
+                        </md-select-option>
+                        <md-select-option value="6">
+                            <div slot="headline">6</div>
+                        </md-select-option>
+                        <md-select-option value="7">
+                            <div slot="headline">7</div>
+                        </md-select-option>
+                        <md-select-option value="8">
+                            <div slot="headline">8</div>
+                        </md-select-option>
+                        <md-select-option value="9">
+                            <div slot="headline">9</div>
+                        </md-select-option>
+                        <md-select-option value="10">
+                            <div slot="headline">10</div>
+                        </md-select-option>
+                        <md-select-option value="11">
+                            <div slot="headline">11</div>
+                        </md-select-option>
+                        <md-select-option value="12">
+                            <div slot="headline">12</div>
+                        </md-select-option>
+                    </md-outlined-select>
                 </div>
             </div>
-
         </div>
 
         <!-- 課程圖片與其他附件區塊 -->
@@ -104,39 +157,35 @@
             <h2>課程圖片與其他附件</h2>
             <h5>提供圖片與附件時，若提供 Google 雲端硬碟的網址，請確保已經將檔案設為公開分享。<br>正常的情況下，提供圖片檔案網址時，會自動顯示圖片預覽。如果無法顯示，請檢查網址是否正確。</h5>
             <div class="form-row">
-                <md-outlined-text-field id="coverImageUrl" label="封面圖片網址" supporting-text="必要，限單張，推薦 16:9 比例">
+                <md-outlined-text-field id="coverImageUrl" label="封面圖片網址" supporting-text="必要，限單張，推薦 16:9 比例，其他比例會裁切"
+                    placeholder="可為圖片檔案網址或 Google Drive 圖片分享連結">
                 </md-outlined-text-field>
             </div>
             <img id="coverPreview" class="image-preview">
 
             <div class="form-row">
-                <md-outlined-text-field id="imageUrl" label="海報網址" supporting-text="非必要，限單張">
+                <md-outlined-text-field id="imageUrl" label="海報網址" supporting-text="非必要，限單張"
+                    placeholder="可為圖片檔案網址或 Google Drive 圖片分享連結">
                 </md-outlined-text-field>
             </div>
             <img id="imagePreview" class="image-preview">
 
-            <md-outlined-text-field id="otherAttachmentUrl" label="其他附件網址" supporting-text="非必要">
+            <md-outlined-text-field id="otherAttachmentUrl" label="其他附件網址" supporting-text="非必要，限一個連結"
+                placeholder="若有多個檔案或附件，請分享整個資料夾">
             </md-outlined-text-field>
         </div>
 
         <!-- 課程內容區塊 -->
         <div class="form-section">
-            <h2>課程內容</h2>
+            <h2>課程內容規劃</h2>
             <div class="form-row">
                 <md-chip-set>
-                    <md-outlined-text-field id="tagInput" label="課程標籤"
-                        supporting-text="至少一個，按下 Enter 新增"></md-outlined-text-field>
+                    <md-outlined-text-field id="tagInput" label="跨領域類別標籤"
+                        supporting-text="至少兩個，按下 Enter 新增"></md-outlined-text-field>
                 </md-chip-set>
                 <div id="tagContainer" class="chip-container"></div>
             </div>
-
             <h3>募課資料</h3>
-            <div class="form-row">
-                <md-outlined-text-field class="textarea-field" id="shortDesc" label="簡短描述" type="textarea"
-                    maxlength="70" rows="2">
-                </md-outlined-text-field>
-            </div>
-
             <div class="form-row">
                 <md-outlined-text-field class="textarea-field" id="motivation" label="開課動機" type="textarea" rows="5">
                 </md-outlined-text-field>
@@ -149,20 +198,16 @@
             </div>
 
             <div class="form-row">
-                <md-outlined-text-field class="textarea-field" id="expectedResults" label="預期成果" type="textarea"
+                <md-outlined-text-field class="textarea-field" id="expectedResults" label="預期學習成果" type="textarea"
                     rows="5" helper-text="使用換行來分隔不同成果">
-                </md-outlined-text-field>
-            </div>
-            <h3>開課資訊 (成功開課後的資訊)</h3>
-            <div class="form-row">
-                <md-outlined-text-field class="textarea-field" id="courseIntro" label="課程簡介" type="textarea" rows="5">
                 </md-outlined-text-field>
             </div>
         </div>
 
         <!-- 講師資訊 -->
         <div class="form-section">
-            <h2>講師資訊</h2>
+            <h2>預計邀請講師資訊</h2>
+            <h5>至少填寫一位講師。</h5>
             <div id="lecturerContainer"></div>
             <div class="button-right">
                 <md-filled-button id="addLecturer">新增講師</md-outlined-button>
@@ -171,7 +216,34 @@
 
         <!-- 課程大綱 -->
         <div class="form-section">
-            <h2>課程大綱</h2>
+            <h2>課程大綱規劃</h2>
+            <h5>每列代表一節次，至少填寫一節次。<br>若「每次上課時數」選擇為兩小時或三小時，則各以兩小時或三小時為一節次。</h5>
+            <div class="form-row">
+                <md-outlined-select id="courseHours" label="每次上課時數">
+                    <md-select-option value="2">
+                        <div slot="headline">2 小時</div>
+                    </md-select-option>
+                    <md-select-option value="3">
+                        <div slot="headline">3 小時</div>
+                    </md-select-option>
+                </md-outlined-select>
+                <md-outlined-select id="coursePart" label="多場次活動">
+                    <md-select-option value="否">
+                        <div slot="headline">否（學員參與所有節次才可得完整微學分）</div>
+                    </md-select-option>
+                    <md-select-option value="是">
+                        <div slot="headline">是（學員參與部分節次可得部分微學分）</div>
+                    </md-select-option>
+                </md-outlined-select>
+                <md-outlined-select id="courseDiet" label="提供餐點">
+                    <md-select-option value="否">
+                        <div slot="headline">否（非全天課程）</div>
+                    </md-select-option>
+                    <md-select-option value="是">
+                        <div slot="headline">是（是全天課程）</div>
+                    </md-select-option>
+                </md-outlined-select>
+            </div>
             <div class="table-container">
                 <table id="syllabusTable">
                     <thead>
@@ -190,8 +262,20 @@
                 </div>
             </div>
         </div>
+
+        <div class="form-section">
+            <h2>開課資訊</h2>
+            <h5>提案送交後將由課程審議委員會審查，通過後再填寫即可。</h5>
+            <div class="form-row">
+                <md-outlined-text-field class="textarea-field" id="courseIntro" label="課程簡介" type="textarea" rows="5"
+                    supporting-text="成功開課後再填寫">
+                </md-outlined-text-field>
+            </div>
+        </div>
     </form>
-    <script src="https://rpb204.nsysu.edu.tw/static/file/367/1367/img/4571/stu_sys_script.js"></script>
+    <div class="button-right"><md-filled-button href="#top">回到上方</md-filled-button></div>
+
+    <script src="stu_sys_script.js"></script>
 </body>
 
 </html>

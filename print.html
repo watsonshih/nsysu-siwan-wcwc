@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>學生募課趣 - 西灣我課 We carry, We care</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Plus+Jakarta+Sans:wght@300;600&family=Noto+Sans+TC:wght@350;650&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="https://siwan.nsysu.edu.tw/static/file/29/1029/img/4414/wcwc-logo-sq-icon-color.png"
+        type="image/x-icon">
+    <link rel="icon" href="https://siwan.nsysu.edu.tw/static/file/29/1029/img/4414/wcwc-logo-sq-icon-color.png"
+        type="image/x-icon">
+
+    <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+</script>
+
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7909ESRH5G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-7909ESRH5G');
+    </script>
+    <!-- MS Clarity -->
+
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "g5j1hptm2u");
+    </script>
+
+    <!-- Bing webmasters -->
+    <meta name="msvalidate.01" content="88A4579ED9CDAA5850E9A658AAEFB123" />
+    <!-- Maintenance of tracking data by Watson Shih -->
+
+    <link rel="stylesheet" href="print_sys_style.css">
+</head>
+
+<body>
+    <div class="header" id="top">
+        <div><img alt="西灣我課 We carry, We care｜西灣學院 Si Wan College" class="headlogo" height=""
+                src="https://rpb204.nsysu.edu.tw/static/file/367/1367/img/4571/wcwc-logo-all-color.svg" width="150px">
+        </div>
+        <p><span class="title">ID: </span><span id="courseId" label="申請課程編號 (自動產生)" readonly>
+            </span></p>
+        <md-outlined-button class="no-inPrint-pdf" id="downloadPDF" style="display: none;">列印申請單</md-outlined-button>
+        <md-filled-button class="no-inPrint" id="loadButton">讀取申請單</md-filled-button>
+        <input type="file" id="fileInput" accept=".json" style="display: none">
+    </div>
+    <h1>學生募課趣 - 提案申請審核單</h1>
+
+    <form id="courseForm" onsubmit="return false;">
+        <!-- 基本資訊區塊 -->
+        <div class="form-section">
+            <h2>提案人資訊</h2>
+            <p><span class="title">提案人：</span><span id="applyName" label="提案人"></span> (<span id="applyId"
+                    label="提案人學號">
+                </span>)</p>
+            <p><span class="title">系級：</span><span id="applyDepartment" label="提案人系級">
+                </span></p>
+            <p><span class="title">電話：</span><span id="applyPhone" label="提案人聯絡電話" type="number">
+                </span></p>
+            <p><span class="title">E-mail：</span><span id="applyMail" label="提案人 E-mail" type="email">
+                </span></p>
+
+            <h2>課程規劃</h2>
+            <div class="form-row"></div>
+            <img id="coverPreview" class="image-preview">
+
+        </div>
+        <div class="form-row">
+            <h4><span class="title">提案課名：</span><span id="courseName" label="課程名稱">
+                </span></h4>
+            <div id="tagContainer" class="chip-container"></div>
+        </div>
+        <div class="registration-period">
+            <div class="date-picker-container">
+                <p><span class="title">預計活動辦理日期：</span><span id="registrationYear"></span> 年 <span
+                        id="registrationMonth" label="月"></span> 月</p>
+            </div>
+        </div>
+        <h3>開課動機</h3>
+        <div class="form-row">
+            <p class="textarea-field" id="motivation" label="開課動機">
+                </span></p>
+        </div>
+        <h3>課程目標</h3>
+        <div class="form-row">
+            <p class="textarea-field" id="objectives" label="課程目標">
+                </span></p>
+        </div>
+        <h3>預期學習成果</h3>
+        <div class="form-row">
+            <p class="textarea-field" id="expectedResults" label="預期學習成果">
+                </span></p>
+        </div>
+        <img id="imagePreview" class="image-preview">
+        </div>
+
+        <!-- 課程圖片與其他附件區塊 -->
+        <div class="form-section display-none">
+            <h2>課程圖片與其他附件</h2>
+            <div class="form-row">
+                <p><span class="title">：</span><span id="coverImageUrl" label="封面圖片網址">
+                    </span></p>
+            </div>
+            <img id="coverPreview" class="image-preview">
+
+            <div class="form-row">
+                <p><span class="title">：</span><span id="imageUrl" label="海報網址" supporting-text="非必要，限單張">
+                    </span></p>
+            </div>
+            <img id="imagePreview" class="image-preview">
+
+            <p><span class="title">：</span><span id="otherAttachmentUrl" label="其他附件網址" supporting-text="非必要，限一個連結">
+                </span></p>
+        </div>
+
+        <!-- 講師資訊 -->
+        <div class="form-section">
+            <h2>預計邀請講師資訊</h2>
+            <div id="lecturerContainer"></div>
+        </div>
+
+        <!-- 課程大綱 -->
+        <div class="form-section">
+            <h2>課程大綱</h2>
+            <p><span class="title">每次上課時數：</span><span id="courseHours" label="每次上課時數">
+                </span> 小時</p>
+            <p><span class="title">學生需要參與所有場次才可獲得微學分：</span><span id="coursePart" label="多場次活動">
+                </span></p>
+            <p><span class="title">活動提供餐點：</span><span id="courseDiet" label="提供餐點">
+                </span></p>
+            <div class="table-container">
+                <table id="syllabusTable">
+                    <thead>
+                        <tr>
+                            <th>上課時間及地點</th>
+                            <th>講師</th>
+                            <th>講題</th>
+                            <th>課程學習重點</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="form-section display-none">
+            <h2>開課資訊</h2>
+            <h5>提案送交後將由課程審議委員會審查，通過後再填寫即可。</h5>
+            <div class="form-row">
+                <p class="textarea-field" id="courseIntro" label="課程簡介" type="textarea" rows="5"
+                    supporting-text="成功開課後再填寫">
+                    </span></p>
+            </div>
+        </div>
+    </form>
+
+    <script src="print_sys_script.js"></script>
+</body>
+
+</html>

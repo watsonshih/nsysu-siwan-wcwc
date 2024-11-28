@@ -170,7 +170,7 @@
             </div>
             <img id="imagePreview" class="image-preview">
 
-            <md-outlined-text-field id="otherAttachmentUrl" label="其他附件網址" supporting-text="非必要，限一個連結"
+            <md-outlined-text-field id="otherAttachmentUrl" label="其他附件網址" supporting-text="非必要，限一個連結，不會顯示圖片預覽"
                 placeholder="若有多個檔案或附件，請分享整個資料夾">
             </md-outlined-text-field>
         </div>
@@ -186,38 +186,6 @@
                 <div id="tagContainer" class="chip-container"></div>
             </div>
             <h3>募課資料</h3>
-            <div class="form-row">
-                <md-outlined-text-field class="textarea-field" id="motivation" label="開課動機" type="textarea" rows="5">
-                </md-outlined-text-field>
-            </div>
-
-            <div class="form-row">
-                <md-outlined-text-field class="textarea-field" id="objectives" label="課程目標" type="textarea" rows="5"
-                    helper-text="使用換行來分隔不同目標">
-                </md-outlined-text-field>
-            </div>
-
-            <div class="form-row">
-                <md-outlined-text-field class="textarea-field" id="expectedResults" label="預期學習成果" type="textarea"
-                    rows="5" helper-text="使用換行來分隔不同成果">
-                </md-outlined-text-field>
-            </div>
-        </div>
-
-        <!-- 講師資訊 -->
-        <div class="form-section">
-            <h2>預計邀請講師資訊</h2>
-            <h5>至少填寫一位講師。</h5>
-            <div id="lecturerContainer"></div>
-            <div class="button-right">
-                <md-filled-button id="addLecturer">新增講師</md-outlined-button>
-            </div>
-        </div>
-
-        <!-- 課程大綱 -->
-        <div class="form-section">
-            <h2>課程大綱規劃</h2>
-            <h5>每列代表一節次，至少填寫一節次。<br>若「每次上課時數」選擇為兩小時或三小時，則各以兩小時或三小時為一節次。</h5>
             <div class="form-row">
                 <md-outlined-select id="courseHours" label="每次上課時數">
                     <md-select-option value="2">
@@ -244,6 +212,50 @@
                     </md-select-option>
                 </md-outlined-select>
             </div>
+            <div class="form-row">
+                <md-outlined-text-field class="textarea-field" id="motivation" label="開課動機" type="textarea" rows="5">
+                </md-outlined-text-field>
+            </div>
+            <div class="form-row">
+                <md-outlined-text-field class="textarea-field" id="objectives" label="課程目標" type="textarea" rows="5"
+                    helper-text="使用換行來分隔不同目標">
+                </md-outlined-text-field>
+            </div>
+
+            <div class="form-row">
+                <md-outlined-text-field class="textarea-field" id="expectedResults" label="預期學習成果" type="textarea"
+                    rows="5" helper-text="使用換行來分隔不同成果">
+                </md-outlined-text-field>
+            </div>
+        </div>
+
+        <!-- 講師資訊 -->
+        <div class="form-section">
+            <h2>預計邀請講師資訊</h2>
+            <h5>至少填寫一位講師。</h5>
+            <div id="lecturerContainer"></div>
+            <div class="button-right">
+                <md-filled-button id="addLecturer">新增講師</md-outlined-button>
+            </div>
+        </div>
+
+        <p>填寫完畢或想暫存內容，<b>請記得要下載檔案 (.json)</b>！</p>
+        <div><md-filled-button id="saveButton">下載申請單</md-filled-button>
+            <md-outlined-button id="loadButton">讀取申請單</md-filled-button>
+        </div>
+        <hr>
+
+        <div class="form-section display-none">
+            <h2>開課資訊</h2>
+            <h5>提案送交後將由課程審議委員會審查，審查時以下內容將不會顯示，<b>募課通過後再填寫即可</b>。</h5>
+            <h3>課程簡介</h3>
+            <div class="form-row">
+                <md-outlined-text-field class="textarea-field" id="courseIntro" label="課程簡介" type="textarea" rows="5"
+                    supporting-text="">
+                </md-outlined-text-field>
+            </div>
+            <h3>課程大綱規劃</h3>
+            <h5>每列代表一節次，至少填寫一節次。<br>請依上方「每次上課時數」規劃課程一節次的時長（兩小時或三小時）。</h5>
             <div class="table-container">
                 <table id="syllabusTable">
                     <thead>
@@ -262,19 +274,8 @@
                 </div>
             </div>
         </div>
-
-        <div class="form-section">
-            <h2>開課資訊</h2>
-            <h5>提案送交後將由課程審議委員會審查，通過後再填寫即可。</h5>
-            <div class="form-row">
-                <md-outlined-text-field class="textarea-field" id="courseIntro" label="課程簡介" type="textarea" rows="5"
-                    supporting-text="審查時本欄位將不會顯示，成功開課後再填寫即可">
-                </md-outlined-text-field>
-            </div>
-        </div>
     </form>
-    <p>填寫完畢或想暫存內容，請記得要下載檔案 (.json)！</p>
-    <div class="button-right"><md-filled-button href="#top">回到上方</md-filled-button></div>
+    <div><md-filled-button href="#top">回到上方</md-filled-button></div>
 
     <script src="stu_sys_script.js"></script>
 </body>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>提案審核單列印系統 - 西灣我課 We carry, We care</title>
+    <title>學生募課趣 - 西灣我課 We carry, We care</title>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Plus+Jakarta+Sans:wght@300;600&family=Noto+Sans+TC:wght@350;650&display=swap"
@@ -95,6 +95,12 @@
                 </span></h4>
             <div id="tagContainer" class="chip-container"></div>
         </div>
+        <p><span class="title">每次上課時數：</span><span id="courseHours" label="每次上課時數">
+            </span> 小時</p>
+        <p><span class="title">學生需要參與所有場次才可獲得微學分：</span><span id="coursePart" label="多場次活動">
+            </span></p>
+        <p><span class="title">活動提供餐點：</span><span id="courseDiet" label="提供餐點">
+            </span></p>
         <div class="registration-period">
             <div class="date-picker-container">
                 <p><span class="title">預計活動辦理日期：</span><span id="registrationYear"></span> 年 <span
@@ -145,14 +151,8 @@
         </div>
 
         <!-- 課程大綱 -->
-        <div class="form-section">
+        <div class="form-section display-none">
             <h2>課程大綱</h2>
-            <p><span class="title">每次上課時數：</span><span id="courseHours" label="每次上課時數">
-                </span> 小時</p>
-            <p><span class="title">學生需要參與所有場次才可獲得微學分：</span><span id="coursePart" label="多場次活動">
-                </span></p>
-            <p><span class="title">活動提供餐點：</span><span id="courseDiet" label="提供餐點">
-                </span></p>
             <div class="table-container">
                 <table id="syllabusTable">
                     <thead>

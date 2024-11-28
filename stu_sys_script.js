@@ -209,7 +209,7 @@ function showMessage(type, message) {
     // 顯示 snackbar
     snackbar.classList.add('show');
 
-    // 3秒後移除
+    // 移除
     setTimeout(() => {
         snackbar.classList.remove('show');
         setTimeout(() => {
@@ -219,56 +219,60 @@ function showMessage(type, message) {
 }
 
 // 修改儲存功能
-document.getElementById('saveButton').addEventListener('click', () => {
-    try {
-        const courseData = {
-            提案人: document.getElementById('applyName').value,
-            提案人學號: document.getElementById('applyId').value,
-            提案人系級: document.getElementById('applyDepartment').value,
-            提案人電話: document.getElementById('applyPhone').value,
-            提案人Mail: document.getElementById('applyMail').value,
-            課程編號: document.getElementById('courseId').value,
-            課程名稱: document.getElementById('courseName').value,
-            開課動機: handleLineBreaks(document.getElementById('motivation').value, true),
-            課程目標: handleLineBreaks(document.getElementById('objectives').value, true),
-            預期成果: handleLineBreaks(document.getElementById('expectedResults').value, true),
-            每次上課時數: document.getElementById('courseHours').value,
-            封面圖片網址: document.getElementById('coverImageUrl').value,
-            圖片網址: document.getElementById('imageUrl').value,
-            講師資訊: getLecturerData(),
-            課程標籤: Array.from(tags),
-            報名期間: {
-                年: formatDate(document.getElementById('registrationYear').value),
-                月: formatDate(document.getElementById('registrationMonth').value)
-            },
-            課程簡介: handleLineBreaks(document.getElementById('courseIntro').value, true),
-            多節次活動: document.getElementById('coursePart').value,
-            提供餐點: document.getElementById('courseDiet').value,
-            課程大綱: getSyllabusData(),
-            其他附件網址: document.getElementById('otherAttachmentUrl').value,
-        };
+document.querySelectorAll('#saveButton').forEach(button => {
+    button.addEventListener('click', () => {
+        try {
+            const courseData = {
+                提案人: document.getElementById('applyName').value,
+                提案人學號: document.getElementById('applyId').value,
+                提案人系級: document.getElementById('applyDepartment').value,
+                提案人電話: document.getElementById('applyPhone').value,
+                提案人Mail: document.getElementById('applyMail').value,
+                課程編號: document.getElementById('courseId').value,
+                課程名稱: document.getElementById('courseName').value,
+                開課動機: handleLineBreaks(document.getElementById('motivation').value, true),
+                課程目標: handleLineBreaks(document.getElementById('objectives').value, true),
+                預期成果: handleLineBreaks(document.getElementById('expectedResults').value, true),
+                每次上課時數: document.getElementById('courseHours').value,
+                封面圖片網址: document.getElementById('coverImageUrl').value,
+                圖片網址: document.getElementById('imageUrl').value,
+                講師資訊: getLecturerData(),
+                課程標籤: Array.from(tags),
+                報名期間: {
+                    年: document.getElementById('registrationYear').value,
+                    月: document.getElementById('registrationMonth').value
+                },
+                課程簡介: handleLineBreaks(document.getElementById('courseIntro').value, true),
+                多節次活動: document.getElementById('coursePart').value,
+                提供餐點: document.getElementById('courseDiet').value,
+                課程大綱: getSyllabusData(),
+                其他附件網址: document.getElementById('otherAttachmentUrl').value,
+            };
 
-        const fileName = `SIWAN_WCWC_${courseData.課程編號}.json`;
-        const jsonStr = JSON.stringify(courseData, null, 2);
-        const blob = new Blob([jsonStr], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
+            const fileName = `SIWAN_WCWC_${courseData.課程編號}.json`;
+            const jsonStr = JSON.stringify(courseData, null, 2);
+            const blob = new Blob([jsonStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
 
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = fileName;
-        a.click();
-        URL.revokeObjectURL(url);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            a.click();
+            URL.revokeObjectURL(url);
 
-        showMessage('success', '下載成功');
-    } catch (error) {
-        console.error('下載失敗:', error);
-        showMessage('error', '下載失敗');
-    }
+            showMessage('success', '下載成功');
+        } catch (error) {
+            console.error('下載失敗:', error);
+            showMessage('error', '下載失敗');
+        }
+    });
 });
 
 // 讀取JSON
-document.getElementById('loadButton').addEventListener('click', () => {
-    document.getElementById('fileInput').click();
+document.querySelectorAll('#loadButton').forEach(button => {
+    button.addEventListener('click', () => {
+        document.getElementById('fileInput').click();
+    });
 });
 
 document.getElementById('fileInput').addEventListener('change', (e) => {

@@ -13,6 +13,14 @@ body {
     font-size: 1.1rem;
 }
 
+.display-none {
+    display: none;
+}
+
+hr {
+    margin-top: 3em;
+}
+
 h1 {
     font-weight: bold;
 }

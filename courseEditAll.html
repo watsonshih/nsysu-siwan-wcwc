@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>學生募課趣 - 西灣我課 We carry, We care</title>
+    <title>學生募課趣課程上架 - 西灣我課 We carry, We care</title>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Plus+Jakarta+Sans:wght@300;600&family=Noto+Sans+TC:wght@350;650&display=swap"
@@ -72,27 +72,77 @@
                 <input type="file" id="fileInput" accept=".json" style="display: none">
         </div>
     </div>
-    <h1>學生募課趣 - <br class="mob_br">募課提案申請單</h1>
-    <p>請填寫以下資料，完成填寫後，請按下「下載申請單」按鈕，並將申請單提供給承辦人員。</p>
-    <p>想要修改之前下載的申請單，請按下「讀取申請單」按鈕，上傳之前儲存的申請單檔案。</p>
+    <h1>學生募課趣 - <br class="mob_br">課程上架資料填寫</h1>
+    <p><b>恭喜您的募課提案已通過核可！</b></p>
+    <p>在上架課程前，您需要完善課程資料，讓同學更了解你的課程。</p>
+    <p>您可以透過<b>「讀取申請單」</b>繼續編輯、完善之前提案的內容，無須重新填寫。</p>
+    <p>填寫完成後，請記得下載並回傳檔案。</p>
     <p>請注意：本網站不會保存任何資料，如果無法一次完成填寫，請先下載申請單，下次再讀取繼續填寫。</p>
 
     <form id="courseForm" onsubmit="return false;">
         <!-- 基本資訊區塊 -->
         <div class="form-section">
+
+            <div class="form-section">
+                <h2>開課資訊</h2>
+                <h5>本區域將會是網頁主要會顯示的內容，請您完整填寫，<b>確保同學們都能夠了解您的課程內容</b>，且所有資訊皆無誤。</h5>
+                <h3>課程簡介</h3>
+                <div class="form-row">
+                    <md-outlined-text-field class="textarea-field" id="courseIntro" label="課程簡介" type="textarea"
+                        rows="5" supporting-text="">
+                    </md-outlined-text-field>
+                </div>
+                <h3>課程大綱規劃</h3>
+                <h5>每列代表一節次，至少填寫一節次。<br>請依上方「每次上課時數」規劃課程一節次的時長（兩小時或三小時）。</h5>
+                <div class="table-container">
+                    <table id="syllabusTable">
+                        <thead>
+                            <tr>
+                                <th>上課時間及地點</th>
+                                <th>講師</th>
+                                <th>講題</th>
+                                <th>課程學習重點</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="button-right">
+                        <md-filled-button id="addSyllabusRow">新增課程大綱</md-filled-button>
+                    </div>
+                </div>
+                <h3>講師資訊</h3>
+                <h5>至少填寫一位講師。</h5>
+                <div id="lecturerContainer"></div>
+                <div class="button-right">
+                    <md-filled-button id="addLecturer">新增講師</md-outlined-button>
+                </div>
+            </div>
+
+            <p>以上欄位為提案成功後需要新增的資訊。</p>
+            <p>若您想更新過去的資料，仍可以繼續往下更新過去填寫過的內容。</p>
+            <p>填寫完畢或想暫存內容，<b>請記得要下載檔案 (.json)</b>！</p>
+            <div><md-filled-button id="saveButton">下載申請單</md-filled-button>
+                <md-outlined-button id="loadButton">讀取申請單</md-filled-button>
+            </div>
+            <hr>
+            <p><b>請注意：過去提案所繳交的內容都還是會顯示在網站中，且部分資訊無法更改。</b></p>
+            <p>若您想要更新過去的資料，請繼續往下填寫，並在最後點選「下載申請單」儲存檔案。</p>
             <h2>提案人資訊</h2>
             <div class="form-row">
-                <md-outlined-text-field id="applyName" label="提案人" placeholder="請填寫全名">
+                <md-outlined-text-field id="applyName" label="提案人" placeholder="請填寫全名" readonly=1>
                 </md-outlined-text-field>
-                <md-outlined-text-field id="applyId" label="提案人學號" placeholder="BXXXXXXXXX">
+                <md-outlined-text-field id="applyId" label="提案人學號" placeholder="BXXXXXXXXX" readonly=1>
                 </md-outlined-text-field>
-                <md-outlined-text-field id="applyDepartment" label="提案人系級" placeholder="XX系(所) 大X">
+                <md-outlined-text-field id="applyDepartment" label="提案人系級" placeholder="XX系(所) 大X" readonly=1>
                 </md-outlined-text-field>
             </div>
             <div class="form-row">
-                <md-outlined-text-field id="applyPhone" label="提案人聯絡電話" type="number" placeholder="09XXXXXXXX">
+                <md-outlined-text-field id="applyPhone" label="提案人聯絡電話" type="number" placeholder="09XXXXXXXX"
+                    readonly=1>
                 </md-outlined-text-field>
-                <md-outlined-text-field id="applyMail" label="提案人 E-mail" type="email" placeholder="XXX@gmail.com">
+                <md-outlined-text-field id="applyMail" label="提案人 E-mail" type="email" placeholder="XXX@gmail.com"
+                    readonly=1>
                 </md-outlined-text-field>
             </div>
 
@@ -101,7 +151,7 @@
                 <md-outlined-text-field id="courseName" label="課程名稱">
                 </md-outlined-text-field>
             </div>
-            <div class="registration-period">
+            <div class="registration-period display-none">
                 <div class="date-picker-container">
                     <label>預計活動辦理日期</label>
                     <md-outlined-text-field id="registrationYear" label="年" type="number" value="Short" suffix-text="年"
@@ -213,67 +263,29 @@
                 </md-outlined-select>
             </div>
             <div class="form-row">
-                <md-outlined-text-field class="textarea-field" id="motivation" label="開課動機" type="textarea" rows="5">
+                <md-outlined-text-field class="textarea-field" id="motivation" label="開課動機" type="textarea" rows="5"
+                    readonly=1>
                 </md-outlined-text-field>
             </div>
             <div class="form-row">
                 <md-outlined-text-field class="textarea-field" id="objectives" label="課程目標" type="textarea" rows="5"
-                    helper-text="使用換行來分隔不同目標">
+                    readonly=1 helper-text="使用換行來分隔不同目標">
                 </md-outlined-text-field>
             </div>
 
             <div class="form-row">
                 <md-outlined-text-field class="textarea-field" id="expectedResults" label="預期學習成果" type="textarea"
-                    rows="5" helper-text="使用換行來分隔不同成果">
+                    rows="5" helper-text="使用換行來分隔不同成果" readonly=1>
                 </md-outlined-text-field>
             </div>
         </div>
 
-        <!-- 講師資訊 -->
-        <div class="form-section">
-            <h2>預計邀請講師資訊</h2>
-            <h5>至少填寫一位講師。</h5>
-            <div id="lecturerContainer"></div>
-            <div class="button-right">
-                <md-filled-button id="addLecturer">新增講師</md-outlined-button>
-            </div>
-        </div>
-
-        <p>填寫完畢或想暫存內容，<b>請記得要下載檔案 (.json)</b>！</p>
         <div><md-filled-button id="saveButton">下載申請單</md-filled-button>
             <md-outlined-button id="loadButton">讀取申請單</md-filled-button>
         </div>
         <hr>
 
-        <div class="form-section display-none">
-            <h2>開課資訊</h2>
-            <h5>提案送交後將由課程審議委員會審查，審查時以下內容將不會顯示，<b>募課通過後再填寫即可</b>。</h5>
-            <h3>課程簡介</h3>
-            <div class="form-row">
-                <md-outlined-text-field class="textarea-field" id="courseIntro" label="課程簡介" type="textarea" rows="5"
-                    supporting-text="">
-                </md-outlined-text-field>
-            </div>
-            <h3>課程大綱規劃</h3>
-            <h5>每列代表一節次，至少填寫一節次。<br>請依上方「每次上課時數」規劃課程一節次的時長（兩小時或三小時）。</h5>
-            <div class="table-container">
-                <table id="syllabusTable">
-                    <thead>
-                        <tr>
-                            <th>上課時間及地點</th>
-                            <th>講師</th>
-                            <th>講題</th>
-                            <th>課程學習重點</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-                <div class="button-right">
-                    <md-filled-button id="addSyllabusRow">新增課程大綱</md-filled-button>
-                </div>
-            </div>
-        </div>
+
     </form>
     <div><md-filled-button href="#top">回到上方</md-filled-button></div>
 

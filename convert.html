@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>提案網站轉換器 - 西灣我課 We carry, We care</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&family=Plus+Jakarta+Sans:wght@300;600&family=Noto+Sans+TC:wght@350;650&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" href="https://siwan.nsysu.edu.tw/static/file/29/1029/img/4414/wcwc-logo-sq-icon-color.png"
+        type="image/x-icon">
+    <link rel="icon" href="https://siwan.nsysu.edu.tw/static/file/29/1029/img/4414/wcwc-logo-sq-icon-color.png"
+        type="image/x-icon">
+
+    <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+</script>
+
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7909ESRH5G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-7909ESRH5G');
+    </script>
+    <!-- MS Clarity -->
+
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "g5j1hptm2u");
+    </script>
+
+    <!-- Bing webmasters -->
+    <meta name="msvalidate.01" content="88A4579ED9CDAA5850E9A658AAEFB123" />
+    <!-- Maintenance of tracking data by Watson Shih -->
+    <link rel="stylesheet" href="convert_sys_style.css">
+    <link href="https://rpb204.nsysu.edu.tw/static/file/367/1367/img/4571/course_style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="header" id="top">
+        <div><img alt="西灣我課 We carry, We care｜西灣學院 Si Wan College" class="headlogo" height=""
+                src="https://rpb204.nsysu.edu.tw/static/file/367/1367/img/4571/wcwc-logo-all-color.svg" width="150px">
+        </div>
+        <md-filled-button class="no-inPrint" id="loadButton">讀取申請單</md-filled-button>
+        <input type="file" id="fileInput" accept=".json" style="display: none">
+    </div>
+    <h1>提案網站轉換器</h1>
+    <div id="result"></div>
+    <script src="convert_sys_script.js"></script>
+    <script src="https://rpb204.nsysu.edu.tw/static/file/367/1367/img/4571/W_DEV_CourseDetail.js"></script>
+</body>
+
+</html>

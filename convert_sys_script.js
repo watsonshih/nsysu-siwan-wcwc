@@ -185,28 +185,28 @@ function displayResult(html, course) {
     const downloadContainer = document.createElement('div');
     downloadContainer.className = 'download-container';
     const downloadTitle = document.createElement('h2');
-    downloadTitle.textContent = '下載區域';
+    downloadTitle.textContent = '圖片與附件';
     downloadContainer.appendChild(downloadTitle);
 
     // 檢查並創建下載按鈕
     if (course["封面圖片網址"]) {
         const coverButton = document.createElement('md-filled-button');
-        coverButton.textContent = '下載封面圖片';
-        coverButton.onclick = () => downloadImage(course["封面圖片網址"], '封面圖片');
+        coverButton.textContent = '打開封面圖片';
+        coverButton.onclick = () => openAttachment(course["封面圖片網址"], '封面圖片');
         downloadContainer.appendChild(coverButton);
     }
 
     if (course["圖片網址"]) {
         const imageButton = document.createElement('md-filled-button');
-        imageButton.textContent = '下載圖片';
-        imageButton.onclick = () => downloadImage(course["圖片網址"], '圖片');
+        imageButton.textContent = '打開附加圖片';
+        imageButton.onclick = () => openAttachment(course["圖片網址"], '圖片');
         downloadContainer.appendChild(imageButton);
     }
 
     if (course["其他附件網址"]) {
         const attachmentButton = document.createElement('md-filled-button');
-        attachmentButton.textContent = '下載其他附件';
-        attachmentButton.onclick = () => downloadImage(course["其他附件網址"], '其他附件');
+        attachmentButton.textContent = '打開其他附件';
+        attachmentButton.onclick = () => openAttachment(course["其他附件網址"], '其他附件');
         downloadContainer.appendChild(attachmentButton);
     }
 
@@ -230,27 +230,13 @@ function displayResult(html, course) {
     resultDiv.appendChild(previewDiv);
 }
 
-// 下載圖片的輔助函數
-async function downloadImage(url, filename) {
+// 下載的輔助函數
+async function openAttachment(url) {
     try {
-        const response = await fetch(url, { mode: 'no-cors' });
-        const blob = await response.blob();
-        const extension = url.split('.').pop(); // 取得副檔名
-
-        // 創建下載連結
-        const link = document.createElement('a');
-        link.href = window.URL.createObjectURL(blob);
-        link.download = `${filename}.${extension}`;
-
-        // 觸發下載
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // 釋放 URL 物件
-        window.URL.revokeObjectURL(link.href);
+        // 在新標籤頁中打開網址
+        window.open(url, '_blank');
     } catch (error) {
-        console.error('下載圖片時發生錯誤:', error);
-        alert('下載失敗，請稍後再試');
+        console.error('打開時發生錯誤:', error);
+        alert('打開失敗，請稍後再試');
     }
 }

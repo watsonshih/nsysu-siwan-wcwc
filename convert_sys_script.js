@@ -161,7 +161,7 @@ function displayResult(html, course) {
         document.body.appendChild(resultDiv);
     }
 
-    courseTitleName = `${course["課程簡介"]}`
+    courseTitleName = `${course["課程名稱"]}`
     const courseTitle = document.createElement('h2');
     courseTitle.textContent = courseTitleName;
     const courseTitleContainer = document.createElement('div');

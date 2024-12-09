@@ -204,7 +204,7 @@ function displayResult(html, course) {
     const shortCodeDiv = document.createElement('div');
     const shortCodepre = document.createElement('pre');
     const shortCode = document.createElement('code');
-    shortCodeHtml = `<p><strong>募課中</strong></p>\n<p>${truncateText(course["課程簡介"])}</p>`
+    shortCodeHtml = `<p><strong>募課中</strong></p>\n<p>${truncateText(course["課程簡介"])}</p>`;
     shortCode.textContent = shortCodeHtml;
     shortCodepre.appendChild(shortCode);
     shortCodeDiv.appendChild(shortCodepre);

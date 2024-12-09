@@ -145,6 +145,13 @@ function generateHtmlContent(course) {
     return html;
 }
 
+// 文字截斷函數
+function truncateText(text) {
+    if (!text) return '';
+    if (text.length <= 48) return text;
+    return text.substring(0, 48) + '...';
+}
+
 function displayResult(html, course) {
     // 創建結果顯示區域
     let resultDiv = document.getElementById('result');
@@ -154,20 +161,50 @@ function displayResult(html, course) {
         document.body.appendChild(resultDiv);
     }
 
+    // 創建簡短程式碼區域
+    const shortCodeTitle = document.createElement('h2');
+    shortCodeTitle.textContent = '課程簡介程式碼';
+    const shortCodeTitleContainer = document.createElement('div');
+    shortCodeTitleContainer.className = 'code-title-container';
+
+
+    const shortCodecopyButton = document.createElement('md-filled-button');
+    shortCodecopyButton.textContent = '複製課程簡介程式碼';
+    shortCodecopyButton.onclick = () => {
+        navigator.clipboard.writeText(html).then(() => {
+            const originalText = shortCodecopyButton.textContent;
+            shortCodecopyButton.textContent = '複製成功！';
+            setTimeout(() => {
+                shortCodecopyButton.textContent = originalText;
+            }, 2000);
+        });
+    };
+
+    const shortCodeDiv = document.createElement('div');
+    const shortCodePre = document.createElement('pre');
+    const shortCode = document.createElement('code');
+    shortCode.textContent = `<p><strong>募課中</strong></p>\n<p>${truncateText(course["課程簡介"])}</p>`;
+    shortCodePre.appendChild(shortCode);
+    shortCodeDiv.appendChild(shortCodeTitle);
+    shortCodeDiv.appendChild(shortCodePre);
+    shortCodeDiv.className = 'code';
+
+
     // 創建預覽區域
     const previewDiv = document.createElement('div');
     previewDiv.innerHTML = html;
     previewDiv.className = 'preview';
 
     // 創建程式碼區域的標題和複製按鈕容器
+
     const codeTitleContainer = document.createElement('div');
     codeTitleContainer.className = 'code-title-container';
 
     const codeTitle = document.createElement('h2');
-    codeTitle.textContent = 'HTML 程式碼';
+    codeTitle.textContent = '課程網頁程式碼';
 
     const copyButton = document.createElement('md-filled-button');
-    copyButton.textContent = '複製程式碼';
+    copyButton.textContent = '複製課程網頁程式碼';
     copyButton.onclick = () => {
         navigator.clipboard.writeText(html).then(() => {
             const originalText = copyButton.textContent;
@@ -185,7 +222,7 @@ function displayResult(html, course) {
     const downloadContainer = document.createElement('div');
     downloadContainer.className = 'download-container';
     const downloadTitle = document.createElement('h2');
-    downloadTitle.textContent = '圖片與附件';
+    downloadTitle.textContent = '圖片與附件 (請手動檢查與下載)';
     downloadContainer.appendChild(downloadTitle);
 
     // 檢查並創建下載按鈕
@@ -221,12 +258,13 @@ function displayResult(html, course) {
 
     // 清空並添加新內容
     resultDiv.innerHTML = '';
+    resultDiv.appendChild(shortCodeDiv);
     resultDiv.appendChild(codeTitleContainer);
     resultDiv.appendChild(codeDiv);
     if (downloadContainer.children.length > 1) { // 如果有超過一個子元素（標題以外還有按鈕）
         resultDiv.appendChild(downloadContainer);
     }
-    resultDiv.appendChild(document.createElement('h2')).textContent = '預覽 (請以西灣我課呈現網頁為準)';
+    resultDiv.appendChild(document.createElement('h2')).textContent = '預覽 (請以西灣我課網頁呈現為準)';
     resultDiv.appendChild(previewDiv);
 }
 

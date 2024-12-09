@@ -38,7 +38,7 @@ function generateHtmlContent(course) {
     html += `
         <div class="coursedetail_grid_4 course_info">
             <p class="info_title">課程狀態</p>
-            <p class="info_text info_status">課程已結束</p>
+            <p class="info_text info_status">募課中</p>
         </div>
         <div class="coursedetail_grid_4 course_info">
             <p class="info_title">每次授課時數</p>
@@ -46,7 +46,7 @@ function generateHtmlContent(course) {
         </div>
         <div class="coursedetail_grid_4 course_info">
             <p class="info_title">微學分獲得方式</p>
-            <p class="info_text info_credit">需參與所有場次</p>
+            <p class="info_text info_credit">${course["多節次活動"] === "是" ? "需參與所有場次" : "無須參與所有場次"}</p>
         </div>`;
 
     // 課程標籤
@@ -226,7 +226,7 @@ function displayResult(html, course) {
     if (downloadContainer.children.length > 1) { // 如果有超過一個子元素（標題以外還有按鈕）
         resultDiv.appendChild(downloadContainer);
     }
-    resultDiv.appendChild(document.createElement('h2')).textContent = '預覽';
+    resultDiv.appendChild(document.createElement('h2')).textContent = '預覽 (請以西灣我課呈現網頁為準)';
     resultDiv.appendChild(previewDiv);
 }
 

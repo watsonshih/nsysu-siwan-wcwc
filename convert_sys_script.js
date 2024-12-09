@@ -233,7 +233,7 @@ function displayResult(html, course) {
 // 下載圖片的輔助函數
 async function downloadImage(url, filename) {
     try {
-        const response = await fetch(url);
+        const response = await fetch(url, { mode: 'no-cors' });
         const blob = await response.blob();
         const extension = url.split('.').pop(); // 取得副檔名
 

@@ -161,6 +161,27 @@ function displayResult(html, course) {
         document.body.appendChild(resultDiv);
     }
 
+    courseTitleName = `${course["課程簡介"]}`
+    const courseTitle = document.createElement('h2');
+    courseTitle.textContent = courseTitleName;
+    const courseTitleContainer = document.createElement('div');
+    courseTitleContainer.className = 'code-title-container';
+
+    const courseTitlecopyButton = document.createElement('md-filled-button');
+    courseTitlecopyButton.textContent = '複製課程名稱';
+    courseTitlecopyButton.onclick = () => {
+        navigator.clipboard.writeText(courseTitleName).then(() => {
+            const originalText = courseTitlecopyButton.textContent;
+            courseTitlecopyButton.textContent = '複製成功！';
+            setTimeout(() => {
+                courseTitlecopyButton.textContent = originalText;
+            }, 2000);
+        });
+    };
+
+    courseTitleContainer.appendChild(courseTitle);
+    courseTitleContainer.appendChild(courseTitlecopyButton);
+
     // 創建簡短程式碼區域
     const shortCodeTitle = document.createElement('h2');
     shortCodeTitle.textContent = '課程簡介程式碼';
@@ -261,6 +282,7 @@ function displayResult(html, course) {
 
     // 清空並添加新內容
     resultDiv.innerHTML = '';
+    resultDiv.appendChild(courseTitleContainer);
     resultDiv.appendChild(shortCodeTitleContainer);
     resultDiv.appendChild(shortCodeDiv);
     resultDiv.appendChild(codeTitleContainer);

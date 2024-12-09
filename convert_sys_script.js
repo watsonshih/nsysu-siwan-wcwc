@@ -46,7 +46,7 @@ function generateHtmlContent(course) {
         </div>
         <div class="coursedetail_grid_4 course_info">
             <p class="info_title">微學分獲得方式</p>
-            <p class="info_text info_credit">${course["多節次活動"] === "是" ? "需參與所有場次" : "無須參與所有場次"}</p>
+            <p class="info_text info_credit">${course["多節次活動"] === "否" ? "需參與所有場次" : "無須參與所有場次"}</p>
         </div>`;
 
     // 課程標籤

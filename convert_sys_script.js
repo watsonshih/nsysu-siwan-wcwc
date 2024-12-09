@@ -181,13 +181,15 @@ function displayResult(html, course) {
     };
 
     const shortCodeDiv = document.createElement('div');
-    const shortCodePre = document.createElement('pre');
+    const shortCodepre = document.createElement('pre');
     const shortCode = document.createElement('code');
     shortCode.textContent = `<p><strong>募課中</strong></p>\n<p>${truncateText(course["課程簡介"])}</p>`;
-    shortCodePre.appendChild(shortCode);
-    shortCodeDiv.appendChild(shortCodeTitle);
-    shortCodeDiv.appendChild(shortCodePre);
+    shortCodepre.appendChild(shortCode);
+    shortCodeDiv.appendChild(shortCodepre);
     shortCodeDiv.className = 'code';
+
+    shortCodeTitleContainer.appendChild(shortCodeTitle);
+    shortCodeTitleContainer.appendChild(shortCodecopyButton);
 
 
     // 創建預覽區域
@@ -258,6 +260,7 @@ function displayResult(html, course) {
 
     // 清空並添加新內容
     resultDiv.innerHTML = '';
+    resultDiv.appendChild(shortCodeTitleContainer);
     resultDiv.appendChild(shortCodeDiv);
     resultDiv.appendChild(codeTitleContainer);
     resultDiv.appendChild(codeDiv);

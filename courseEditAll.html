@@ -85,7 +85,15 @@
 
             <div class="form-section">
                 <h2>開課資訊</h2>
-                <h5>本區域將會是網頁主要會顯示的內容，請您完整填寫，<b>確保同學們都能夠了解您的課程內容</b>，且所有資訊皆無誤。</h5>
+                <h5>本區域將會是網頁主要顯示的內容，請您完整填寫，<b>確保同學們都能夠了解您的課程內容</b>，且確認所有資訊皆無誤。</h5>
+                <h3>課程報名連結</h3>
+                <h5>請創建一個報名課程的 <a href="https://docs.google.com/forms" target="_blank">Google
+                        表單</a>，讓同學們可以透過該表單報名課程。<br>請記得在表單中索取同學們的姓名、學號、系級、電子信箱，方便後續通知與計入學分。</h5>
+                <div class="form-row">
+                    <md-outlined-text-field id="courseLink" label="課程報名連結" supporting-text=""
+                        placeholder="課程之 Google 表單報名連結">
+                    </md-outlined-text-field>
+                </div>
                 <h3>課程簡介</h3>
                 <div class="form-row">
                     <md-outlined-text-field class="textarea-field" id="courseIntro" label="課程簡介" type="textarea"
@@ -288,7 +296,7 @@
     </form>
     <div><md-filled-button href="#top">回到上方</md-filled-button></div>
 
-    <script src="stu_sys_script.js"></script>
+    <script src="courseEditAll_sys_script.js"></script>
 </body>
 
 </html>

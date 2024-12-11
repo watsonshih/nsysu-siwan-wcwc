@@ -23,7 +23,6 @@ tagInput.addEventListener('keydown', (e) => {
         if (!tags.has(tag)) {
             tags.add(tag);
             renderTags();
-            updateCodeBlocks();
         }
         tagInput.value = '';
     }
@@ -37,7 +36,6 @@ function renderTags() {
         chip.addEventListener('click', () => {
             tags.delete(tag);
             renderTags();
-            updateCodeBlocks();
         });
         tagContainer.appendChild(chip);
     });
@@ -91,7 +89,6 @@ function createLecturerSection() {
             if (!expertiseSet.has(expertise)) {
                 expertiseSet.add(expertise);
                 renderExpertise();
-                updateCodeBlocks();
             }
             expertiseInput.value = '';
         }
@@ -105,21 +102,14 @@ function createLecturerSection() {
             chip.addEventListener('click', () => {
                 expertiseSet.delete(expertise);
                 renderExpertise();
-                updateCodeBlocks();
             });
             expertiseContainer.appendChild(chip);
         });
     }
 
-    // 監聽所有講師欄位的變更
-    container.querySelectorAll('md-outlined-text-field').forEach(field => {
-        field.addEventListener('input', updateCodeBlocks);
-    });
-
     // 設置移除講師的處理
     container.querySelector('.remove-lecturer').addEventListener('click', () => {
         container.remove();
-        updateCodeBlocks();
     });
 
     // 將專長集合附加到容器上，以便後續存取
@@ -240,6 +230,7 @@ document.querySelectorAll('#saveButton').forEach(button => {
                 提案人Mail: document.getElementById('applyMail').value,
                 課程編號: document.getElementById('courseId').value,
                 課程名稱: document.getElementById('courseName').value,
+                課程報名連結: document.getElementById('courseLink').value,
                 開課動機: handleLineBreaks(document.getElementById('motivation').value, true),
                 課程目標: handleLineBreaks(document.getElementById('objectives').value, true),
                 預期成果: handleLineBreaks(document.getElementById('expectedResults').value, true),
@@ -259,7 +250,7 @@ document.querySelectorAll('#saveButton').forEach(button => {
                 其他附件網址: document.getElementById('otherAttachmentUrl').value,
             };
 
-            const fileName = `SIWAN_WCWC_${courseData.課程編號}.json`;
+            const fileName = `提案上架_${courseData.課程名稱}_(SIWAN_WCWC).json`;
             const jsonStr = JSON.stringify(courseData, null, 2);
             const blob = new Blob([jsonStr], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
@@ -343,18 +334,11 @@ function addSyllabusRow() {
         </td>
     `;
 
-    // 監聽所有欄位的變更
-    row.querySelectorAll('md-outlined-text-field').forEach(field => {
-        field.addEventListener('input', updateCodeBlocks);
-    });
-
     row.querySelector('.delete-row').addEventListener('click', () => {
         row.remove();
-        updateCodeBlocks();
     });
 
     tbody.appendChild(row);
-    updateCodeBlocks();
 }
 
 function getSyllabusData() {
@@ -491,11 +475,6 @@ function loadCourseData(data) {
         fields[2].value = item.講題 || '';
         fields[3].value = item.課程學習重點 || '';
     });
-
-    // 在最後加入更新程式碼區塊
-    setTimeout(() => {
-        updateCodeBlocks();
-    }, 100);
 }
 
 // 初始化
@@ -528,199 +507,3 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('lecturerContainer').appendChild(lecturerSection);
 
 });
-
-// 文字截斷函數
-function truncateText(text) {
-    if (!text) return '';
-    if (text.length <= 48) return text;
-    return text.substring(0, 48) + '...';
-}
-
-// 生成課程簡介 HTML
-function generateCourseIntroHtml() {
-    const courseIntro = document.getElementById('courseIntro').value;
-    let html = `<p><strong>開放報名中</strong></p><p>${truncateText(courseIntro)}</p>`;
-    return html;
-}
-
-// 生成完整課程網頁 HTML
-function generateFullCourseHtml() {
-    // 獲取所有課程資料
-    const courseData = {
-        課程名稱: document.getElementById('courseName').value,
-        課程報名連結: document.getElementById('courseLink').value,
-        每次上課時數: document.getElementById('courseHours').value,
-        多節次活動: document.getElementById('coursePart').value,
-        課程標籤: Array.from(tags),
-        課程簡介: document.getElementById('courseIntro').value,
-        講師資訊: getLecturerData(),
-        課程大綱: getSyllabusData(),
-        開課動機: document.getElementById('motivation').value,
-        課程目標: document.getElementById('objectives').value,
-        預期成果: document.getElementById('expectedResults').value
-    };
-
-    // 使用與 convert_sys_script.js 相同的邏輯生成 HTML
-    const convertNewlines = (text) => {
-        return text ? text.replace(/\n/g, '<br>') : '';
-    };
-
-    let html = `<link href="/static/file/367/1367/img/4571/course_style.css" rel="stylesheet" />`;
-
-    // 課程簡介
-    if (courseData.課程報名連結) {
-        html += `
-                <p style="text-align: center;"><a class="lb" href="${courseData.課程報名連結}" target="_blank">報名課程</a></p>
-                `
-    }
-
-    // 課程基本資訊
-    html += `<div class="coursedetail_grid">
-        <div class="coursedetail_grid_4 course_info">
-            <p class="info_title">課程狀態</p>
-            <p class="info_text info_status">開放報名中</p>
-        </div>
-        <div class="coursedetail_grid_4 course_info">
-            <p class="info_title">每次授課時數</p>
-            <p class="info_text">${courseData.每次上課時數}小時</p>
-        </div>
-        <div class="coursedetail_grid_4 course_info">
-            <p class="info_title">微學分獲得方式</p>
-            <p class="info_text info_credit">${courseData.多節次活動 === "否" ? "需參與所有場次" : "無須參與所有場次"}</p>
-        </div>`;
-
-    // 課程標籤
-    if (courseData.課程標籤.length > 0) {
-        html += `
-            <div class="coursedetail_grid_12 course_tags topic_tags">
-                <ul>`;
-        courseData.課程標籤.forEach(tag => {
-            html += `<li>${tag}</li>`;
-        });
-        html += `</ul></div>`;
-    }
-
-    // 課程簡介
-    if (courseData.課程簡介) {
-        html += `
-            <div class="coursedetail_grid_12">
-                <h3>課程簡介</h3>
-                <div class="course_intro">
-                    <p>${convertNewlines(courseData.課程簡介)}</p>
-                </div>
-            </div>`;
-    }
-
-    // 講師資訊
-    if (courseData.講師資訊.length > 0) {
-        html += '<div class="coursedetail_grid_12"><h3>講師資訊</h3></div>';
-        courseData.講師資訊.forEach(lecturer => {
-            html += `
-            <div class="coursedetail_grid_6 course_speaker">
-                <h6 class="speaker_name">${lecturer.姓名}</h6>
-                <p class="speaker_info">`;
-
-            if (lecturer.單位) {
-                html += `<span class="speaker_company">${lecturer.單位}</span>`;
-            }
-            if (lecturer.職稱) {
-                html += `<span class="speaker_title">${lecturer.職稱}</span>`;
-            }
-
-            html += `</p>`;
-
-            if (lecturer.專長.length > 0) {
-                html += `<div class="course_tags speaker_tags"><ul>`;
-                lecturer.專長.forEach(tag => {
-                    html += `<li>${tag}</li>`;
-                });
-                html += `</ul></div>`;
-            }
-
-            if (lecturer.介紹) {
-                html += `<p class="speaker_intro">${convertNewlines(lecturer.介紹)}</p>`;
-            }
-
-            if (lecturer.相關連結) {
-                html += `<p class="speaker_link"><a class="lb speaker_link_url" href="${lecturer.相關連結}" target="_blank">講師相關連結</a></p>`;
-            }
-            html += "</div>";
-        });
-    }
-
-    // 課程大綱
-    if (courseData.課程大綱.length > 0) {
-        html += `<div class="coursedetail_grid_12">
-        <h3>課程大綱</h3>
-        <table class="course_schedule">
-            <tbody>
-                <tr>
-                    <th>上課時間及地點</th>
-                    <th>講師</th>
-                    <th>講題</th>
-                    <th>課程學習重點</th>
-                </tr>`;
-
-        courseData.課程大綱.forEach(outline => {
-            html += `<tr>
-            <td>${convertNewlines(outline.上課時間及地點)}</td>
-            <td>${outline.講師}</td>
-            <td>${outline.講題}</td>
-            <td>${convertNewlines(outline.課程學習重點)}</td>
-            </tr>`;
-        });
-        html += "</tbody></table></div>";
-    }
-
-    html += `</div>`;
-    return html;
-}
-
-// 更新程式碼區塊的顯示
-function updateCodeBlocks() {
-    const courseIntroHtml = generateCourseIntroHtml();
-    const fullCourseHtml = generateFullCourseHtml();
-
-    // 更新課程簡介程式碼
-    document.querySelector('#course_intro_html code').textContent = courseIntroHtml;
-
-    // 更新課程網頁程式碼
-    document.querySelector('#course_web_html code').textContent = fullCourseHtml;
-}
-
-// 綁定複製按鈕事件
-document.querySelectorAll('.code-title-container md-filled-button').forEach(button => {
-    button.addEventListener('click', function () {
-        const codeBlock = this.closest('.code-title-container').nextElementSibling;
-        const code = codeBlock.querySelector('code').textContent;
-
-        navigator.clipboard.writeText(code).then(() => {
-            const originalText = this.textContent;
-            this.textContent = '複製成功！';
-            setTimeout(() => {
-                this.textContent = originalText;
-            }, 2000);
-        });
-    });
-});
-
-// 監聽表單變更以更新程式碼
-const formElements = document.querySelectorAll('input, textarea, md-outlined-text-field, md-outlined-select');
-formElements.forEach(element => {
-    element.addEventListener('input', updateCodeBlocks);
-});
-
-// 在頁面載入時初始化程式碼區塊
-document.addEventListener('DOMContentLoaded', () => {
-    updateCodeBlocks();
-});
-
-// 在新增/刪除講師和課程大綱時更新程式碼
-document.getElementById('addLecturer').addEventListener('click', () => {
-    setTimeout(updateCodeBlocks, 0);
-});
-
-document.getElementById('addSyllabusRow').addEventListener('click', () => {
-    setTimeout(updateCodeBlocks, 0);
-});
-

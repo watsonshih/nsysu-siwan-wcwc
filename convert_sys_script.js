@@ -31,8 +31,14 @@ function generateHtmlContent(course) {
         return text ? text.replace(/\n/g, '<br>') : '';
     };
 
-    let html = `<link href="/static/file/367/1367/img/4571/course_style.css" rel="stylesheet" />
-    <div class="coursedetail_grid">`;
+    let html = `<link href="/static/file/367/1367/img/4571/course_style.css" rel="stylesheet" />`;
+
+    // 課程簡介
+    if (courseData.課程報名連結) {
+        html += `
+                <p style="text-align: center;"><a class="lb" href="${courseData.課程報名連結}" target="_blank">報名課程</a></p>
+                `
+    }
 
     // 課程基本資訊
     html += `

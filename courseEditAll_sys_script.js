@@ -435,6 +435,9 @@ function loadCourseData(data) {
     document.getElementById('courseId').value = data.課程編號;
     document.getElementById('courseName').value = data.課程名稱;
     document.getElementById('courseHours').value = data.每次上課時數;
+    if (data.課程報名連結) {
+        document.getElementById('courseLink').value = data.課程報名連結;
+    }
 
     // 課程內容
     document.getElementById('motivation').value = handleLineBreaks(data.開課動機, false);

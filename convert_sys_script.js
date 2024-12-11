@@ -41,7 +41,7 @@ function generateHtmlContent(course) {
     }
 
     // 課程基本資訊
-    html += `
+    html += `<div class="coursedetail_grid">
         <div class="coursedetail_grid_4 course_info">
             <p class="info_title">課程狀態</p>
             <p class="info_text info_status">募課中</p>

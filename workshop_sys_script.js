@@ -259,7 +259,7 @@ document.querySelectorAll('#saveButton').forEach(button => {
                 其他附件網址: document.getElementById('otherAttachmentUrl').value,
             };
 
-            const fileName = `SIWAN_WCWC_${courseData.課程編號}.json`;
+            const fileName = `工作坊_${courseData.課程編號}_(SIWAN_WCWC).txt`;
             const jsonStr = JSON.stringify(courseData, null, 2);
             const blob = new Blob([jsonStr], { type: 'application/json' });
             const url = URL.createObjectURL(blob);

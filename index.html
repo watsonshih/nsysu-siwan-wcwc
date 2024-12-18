@@ -179,10 +179,13 @@
         <div class="form-section">
             <h2>課程內容規劃</h2>
             <div class="form-row">
-                <md-chip-set>
+                <div class="form-row">
                     <md-outlined-text-field id="tagInput" label="跨領域類別標籤"
-                        supporting-text="至少兩個，按下 Enter 新增"></md-outlined-text-field>
-                </md-chip-set>
+                        supporting-text="至少兩個，按下 Enter 或點擊右側按鈕新增"></md-outlined-text-field>
+                    <md-icon-button id="addTagButton">
+                        <md-icon>add_box</md-icon>
+                    </md-icon-button>
+                </div>
                 <div id="tagContainer" class="chip-container"></div>
             </div>
             <h3>募課資料</h3>

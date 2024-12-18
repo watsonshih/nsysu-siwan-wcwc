@@ -15,17 +15,32 @@ document.getElementById('courseId').value = generateCourseId();
 // 標籤相關功能
 const tagInput = document.getElementById('tagInput');
 const tagContainer = document.getElementById('tagContainer');
+const addTagButton = document.getElementById('addTagButton');
 const tags = new Set();
 
-tagInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && tagInput.value.trim()) {
-        const tag = tagInput.value.trim();
+// 新增處理標籤的函數
+function addTag() {
+    const tag = tagInput.value.trim();
+    if (tag) {
         if (!tags.has(tag)) {
             tags.add(tag);
             renderTags();
         }
         tagInput.value = '';
     }
+}
+
+// Enter 鍵處理
+tagInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault(); // 防止表單提交
+        addTag();
+    }
+});
+
+// 按鈕點擊處理
+addTagButton.addEventListener('click', () => {
+    addTag();
 });
 
 function renderTags() {
@@ -53,7 +68,12 @@ function createLecturerSection() {
             <md-outlined-text-field class="lecturer-title" label="職稱"></md-outlined-text-field>
         </div>
         <div class="lecturer-expertise">
-            <md-outlined-text-field class="expertise-input" label="專長標籤" supporting-text="至少一個，按下 Enter 新增"></md-outlined-text-field>
+            <div class="form-row">
+                <md-outlined-text-field class="expertise-input" label="專長標籤" supporting-text="至少一個，按下 Enter 或點擊 "+" 新增"></md-outlined-text-field>
+                <md-icon-button class="add-expertise-button">
+                    <md-icon>add_box</md-icon>
+                </md-icon-button>
+            </div>
             <div class="expertise-container"></div>
         </div>
         <div class="form-row">
@@ -73,25 +93,39 @@ function createLecturerSection() {
             </md-outlined-text-field>
         </div>
         <div class="button-right">
-        <md-outlined-button class="remove-lecturer">移除講師</md-outlined-button>
+            <md-outlined-button class="remove-lecturer">移除講師</md-outlined-button>
         </div>
     `;
 
     // 設置專長標籤的處理
     const expertiseInput = container.querySelector('.expertise-input');
     const expertiseContainer = container.querySelector('.expertise-container');
+    const addExpertiseButton = container.querySelector('.add-expertise-button');
     const expertiseSet = new Set();
 
-    expertiseInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && expertiseInput.value.trim()) {
-            e.preventDefault();
-            const expertise = expertiseInput.value.trim();
+    // 新增處理專長標籤的函數
+    function addExpertise() {
+        const expertise = expertiseInput.value.trim();
+        if (expertise) {
             if (!expertiseSet.has(expertise)) {
                 expertiseSet.add(expertise);
                 renderExpertise();
             }
             expertiseInput.value = '';
         }
+    }
+
+    // Enter 鍵處理
+    expertiseInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // 防止表單提交
+            addExpertise();
+        }
+    });
+
+    // 按鈕點擊處理
+    addExpertiseButton.addEventListener('click', () => {
+        addExpertise();
     });
 
     function renderExpertise() {

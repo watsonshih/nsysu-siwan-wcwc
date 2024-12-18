@@ -69,7 +69,7 @@ function createLecturerSection() {
         </div>
         <div class="lecturer-expertise">
             <div class="form-row">
-                <md-outlined-text-field class="expertise-input" label="專長標籤" supporting-text="至少一個，按下 Enter 或點擊右側按鈕新增"></md-outlined-text-field>
+                <md-outlined-text-field class="expertise-input" label="專長標籤" supporting-text="至少一個，按下 Enter 或點擊 "+" 新增"></md-outlined-text-field>
                 <md-icon-button class="add-expertise-button">
                     <md-icon>add_box</md-icon>
                 </md-icon-button>
@@ -294,7 +294,7 @@ document.querySelectorAll('#saveButton').forEach(button => {
             a.click();
             URL.revokeObjectURL(url);
 
-            showMessage('success', '下載成功');
+            showMessage('success', '下載成��');
         } catch (error) {
             console.error('下載失敗:', error);
             showMessage('error', '下載失敗');

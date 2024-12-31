@@ -49,6 +49,38 @@ h5 {
     display: none;
 }
 
+.stu_form_progress_grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2em;
+    margin: 40px 0;
+}
+
+.stu_form_progress {
+    display: none;
+}
+
+.current {
+    display: block;
+}
+
+.stu_form_progress img {
+    width: 100%;
+}
+
+@media(min-width: 992px) {
+    .stu_form_progress {
+        display: block;
+    }
+}
+
+@media(max-width: 992px) {
+    .stu_form_progress_grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
 @media(max-width: 992px) {
 
     .header {

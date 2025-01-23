@@ -294,7 +294,7 @@ document.querySelectorAll('#saveButton').forEach(button => {
             a.click();
             URL.revokeObjectURL(url);
 
-            showMessage('success', '下載成��');
+            showMessage('success', '下載成功');
         } catch (error) {
             console.error('下載失敗:', error);
             showMessage('error', '下載失敗');

@@ -36,7 +36,7 @@ function generateHtmlContent(course) {
     // 課程簡介
     if (course["課程報名連結"]) {
         html += `
-                <p style="text-align: center;"><a class="lb" href="${course["課程報名連結"]}" target="_blank">報名課程</a></p>
+                <p style="text-align: center;"><a class="courseLink" href="${course["課程報名連結"]}" target="_blank">報名課程</a></p>
                 `
     }
 

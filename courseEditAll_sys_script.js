@@ -1,3 +1,12 @@
+// 複製 Email 功能
+function copyEmail() {
+    navigator.clipboard.writeText('gehsaa@gmail.com').then(() => {
+        showMessage('success', '複製成功');
+    }).catch(() => {
+        showMessage('error', '複製失敗');
+    });
+}
+
 // 產生課程編號
 function generateCourseId() {
     const now = new Date();
@@ -296,6 +305,12 @@ document.querySelectorAll('#saveButton').forEach(button => {
             URL.revokeObjectURL(url);
 
             showMessage('success', '下載成功');
+            setTimeout(() => {
+                if (confirm('申請單下載完成，是否前往送出提案？')) {
+                    window.open('https://bookho.nsysu.edu.tw/p/423-1367-4372.php', '_blank');
+                }
+            }, 500);
+
         } catch (error) {
             console.error('下載失敗:', error);
             showMessage('error', '下載失敗');

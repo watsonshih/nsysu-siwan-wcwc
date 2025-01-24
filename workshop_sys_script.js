@@ -261,7 +261,7 @@ document.querySelectorAll('#saveButton').forEach(button => {
 
             const fileName = `工作坊_${courseData.課程名稱}_(SIWAN_WCWC).txt`;
             const jsonStr = JSON.stringify(courseData, null, 2);
-            const blob = new Blob([jsonStr], { type: 'application/json' });
+            const blob = new Blob([jsonStr], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
 
             const a = document.createElement('a');

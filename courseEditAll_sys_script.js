@@ -1,6 +1,6 @@
 // 複製 Email 功能
 function copyEmail() {
-    navigator.clipboard.writeText('gehsaa@gmail.com').then(() => {
+    navigator.clipboard.writeText('gehsaa5852@gmail.com').then(() => {
         showMessage('success', '複製成功');
     }).catch(() => {
         showMessage('error', '複製失敗');
@@ -295,7 +295,7 @@ document.querySelectorAll('#saveButton').forEach(button => {
 
             const fileName = `提案上架_${courseData.課程名稱}_(SIWAN_WCWC).txt`;
             const jsonStr = JSON.stringify(courseData, null, 2);
-            const blob = new Blob([jsonStr], { type: 'application/json' });
+            const blob = new Blob([jsonStr], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
 
             const a = document.createElement('a');

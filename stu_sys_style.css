@@ -13,6 +13,11 @@ body {
     font-size: 1.1rem;
 }
 
+a {
+    color: var(--md-sys-color-primary);
+    font-weight: bold;
+}
+
 .display-none {
     display: none !important;
 }

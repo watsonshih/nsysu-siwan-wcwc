@@ -1,11 +1,16 @@
 :root {
     --md-sys-color-primary: #1BAAD1;
-    --md-sys-color-secondary: #999999;
-    --md-sys-color-surface-container-high: #e3e9e9;
+    --md-sys-color-on-primary: #FFFFFF;
+    --md-sys-color-primary-container: #6FF7F6;
+    --md-sys-color-surface-container: #f5f5f5;
+    --md-sys-color-secondary-container: #a9fdb1;
+    --md-ref-typeface-brand: 'Plus Jakarta Sans', 'Noto Sans TC', 'Roboto';
+    --md-ref-typeface-plain: 'Plus Jakarta Sans', 'Noto Sans TC', 'Roboto';
 }
 
+
 body {
-    font-family: 'Plus Jakarta Sans', 'Noto Sans TC', 'Roboto', sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Noto Sans TC', 'Roboto';
     margin: 0;
     padding: 20px;
     max-width: 1400px;
@@ -103,7 +108,7 @@ h5 {
 }
 
 .form-section {
-    margin-bottom: 24px;
+    margin: 4em 0;
 }
 
 .form-row {

@@ -37,29 +37,30 @@ function createLecturerSection() {
 
     container.innerHTML = `
         <div class="form-row">
-            <h4 class="lecturer-name" label="姓名"></h4>
+            <h4 class="lecturer-name"></h4>
         </div>
         <div class="form-row">
-            <p class="lecturer-unit title" label="單位"></p>
-            <p class="lecturer-title  title" label="職稱"></p>
+            <p class="lecturer-unit title"></p>
+            <p class="lecturer-title  title"></p>
         </div>
         <div class="lecturer-expertise">
             <div class="expertise-container"></div>
         </div>
+        <p class="title">講師介紹</p>
         <div class="form-row">
             <p 
-                class="lecturer-intro"
-                label="介紹" 
-                type="textarea" 
-                rows="3">
+                class="lecturer-intro">
             </p>
         </div>
+        <p class="title">講師課程安排綱要（預計授課 <span class="lecture-hour"></span> 小時）</p>
         <div class="form-row">
             <p 
-                class="lecturer-link"
-                label="相關連結" 
-                supporting-text="限一個連結"
-                type="url">
+                class="lecturer-course">
+            </p>
+        </div>
+        <p class="title">講師相關連結</p>
+        <div class="form-row">
+            <p><a class="lecturer-link" href="" target="_blank"></a>
             </p>
         </div>
     `;
@@ -218,21 +219,6 @@ function handleLineBreaks(text, toJson = false) {
     return text.replace(/\\n/g, '\n');
 }
 
-// 修改講師資料的獲取函數
-function getLecturerData() {
-    const containers = document.querySelectorAll('.lecturer-container');
-    return Array.from(containers).map(container => {
-        return {
-            姓名: container.querySelector('.lecturer-name').innerText,
-            單位: container.querySelector('.lecturer-unit').innerText,
-            職稱: container.querySelector('.lecturer-title').innerText,
-            專長: Array.from(container.expertiseSet || []),
-            介紹: container.querySelector('.lecturer-intro').innerText,
-            相關連結: container.querySelector('.lecturer-link').innerText
-        };
-    });
-}
-
 // 修改課程大綱相關功能
 function addSyllabusRow() {
     const tbody = document.querySelector('#syllabusTable tbody');
@@ -300,7 +286,10 @@ function loadLecturerData(lecturers) {
         section.querySelector('.lecturer-unit').innerText = lecturer.單位;
         section.querySelector('.lecturer-title').innerText = lecturer.職稱;
         section.querySelector('.lecturer-intro').innerText = lecturer.介紹;
+        section.querySelector('.lecture-hour').innerText = lecturer.預計授課小時數;
+        section.querySelector('.lecturer-course').innerText = lecturer.課程安排綱要;
         section.querySelector('.lecturer-link').innerText = lecturer.相關連結;
+        section.querySelector('.lecturer-link').href = lecturer.相關連結;
 
         // 填入專長標籤
         const expertiseSet = section.expertiseSet;
@@ -343,6 +332,7 @@ function loadCourseData(data) {
     document.getElementById('applyMail').innerText = data.提案人Mail;
     document.getElementById('courseId').innerText = data.課程編號;
     document.getElementById('courseName').innerText = data.課程名稱;
+    document.getElementById('courseCount').innerText = data.預計辦理場次數;
     document.getElementById('courseHours').innerText = data.每次上課時數;
 
     // 課程內容
@@ -434,44 +424,3 @@ document.getElementById('downloadPDF').addEventListener('click', () => {
     });
 
 });
-
-// 新增列印相關的媒體查詢樣式
-const style = document.createElement('style');
-style.textContent = `
-    @media print {
-        @page {
-            size: A4;
-            margin: 1cm;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        .no-inPrint {
-            display: none !important;
-        }
-
-        .form-section {
-            page-break-inside: avoid;
-        }
-
-        .image-preview {
-            max-width: 100%;
-            height: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            page-break-inside: avoid;
-        }
-
-        th, td {
-            border: 1px solid #999;
-            padding: 6px;
-        }
-    }
-`;
-document.head.appendChild(style);

@@ -483,7 +483,6 @@ function loadCourseData(data) {
     document.getElementById('applyMail').value = data.提案人Mail;
     document.getElementById('courseId').value = data.課程編號;
     document.getElementById('courseName').value = data.課程名稱;
-    document.getElementById('courseHours').value = data.每次上課時數;
     if (data.課程報名連結) {
         document.getElementById('courseLink').value = data.課程報名連結;
     }
@@ -514,8 +513,14 @@ function loadCourseData(data) {
     loadLecturerData(data.講師資訊);
 
     // 課程大綱
+    document.getElementById('courseHours').value = data.每次上課時數;
+    document.getElementById('courseHours_readonly').innerText = data.每次上課時數;
+    document.getElementById('courseCount_readonly').innerText = data.預計辦理場次數;
     document.getElementById('coursePart').value = data.多節次活動;
+    document.getElementById('coursePart_readonly').innerText = data.多節次活動;
     document.getElementById('courseDiet').value = data.提供餐點;
+    document.getElementById('courseDiet_readonly').innerText = data.提供餐點;
+
     const syllabusTable = document.querySelector('#syllabusTable tbody');
     syllabusTable.innerHTML = '';
     data.課程大綱.forEach(item => {

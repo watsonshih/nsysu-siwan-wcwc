@@ -15,14 +15,13 @@
         type="image/x-icon">
     <link rel="icon" href="https://siwan.nsysu.edu.tw/static/file/29/1029/img/4414/wcwc-logo-sq-icon-color.png"
         type="image/x-icon">
-
     <script type="importmap">
     {
       "imports": {
         "@material/web/": "https://esm.run/@material/web/"
       }
     }
-</script>
+    </script>
 
     <script type="module">
         import '@material/web/all.js';
@@ -211,6 +210,26 @@
             </div>
             <h3>募課資料</h3>
             <div class="form-row">
+                <md-outlined-select id="courseCount" label="預計辦理場次數">
+                    <md-select-option value="1">
+                        <div slot="headline">總共 1 場</div>
+                    </md-select-option>
+                    <md-select-option value="2">
+                        <div slot="headline">總共 2 場</div>
+                    </md-select-option>
+                    <md-select-option value="3">
+                        <div slot="headline">總共 3 場</div>
+                    </md-select-option>
+                    <md-select-option value="4">
+                        <div slot="headline">總共 4 場</div>
+                    </md-select-option>
+                    <md-select-option value="5">
+                        <div slot="headline">總共 5 場</div>
+                    </md-select-option>
+                    <md-select-option value="6">
+                        <div slot="headline">總共 6 場</div>
+                    </md-select-option>
+                </md-outlined-select>
                 <md-outlined-select id="courseHours" label="每次上課時數">
                     <md-select-option value="2">
                         <div slot="headline">2 小時</div>

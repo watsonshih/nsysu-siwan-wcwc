@@ -102,9 +102,18 @@
         <!-- 基本資訊區塊 -->
         <div class="form-section">
 
+
+            <h2>開課資訊</h2>
+            <h5>本區域將會是網頁主要顯示的內容，請您完整填寫，<b>確保同學們都能夠了解您的課程內容</b>，且確認所有資訊皆無誤。</h5>
             <div class="form-section">
-                <h2>開課資訊</h2>
-                <h5>本區域將會是網頁主要顯示的內容，請您完整填寫，<b>確保同學們都能夠了解您的課程內容</b>，且確認所有資訊皆無誤。</h5>
+                <h3>課程名稱</h3>
+                <h5>為您的課程取一個響亮吸睛的名稱吧。</h5>
+                <div class="form-row">
+                    <md-outlined-text-field id="courseName" label="課程名稱">
+                    </md-outlined-text-field>
+                </div>
+            </div>
+            <div class="form-section">
                 <h3>課程報名連結</h3>
                 <h5>請創建一個報名課程的 <a href="https://docs.google.com/forms" target="_blank">Google
                         表單</a>，讓同學們可以透過該表單報名課程。<br>請記得在表單中索取同學們的姓名、學號、系級、電子信箱，方便後續通知與計入學分。</h5>
@@ -118,38 +127,43 @@
                         placeholder="課程之 Google 表單報名連結">
                     </md-outlined-text-field>
                 </div>
-
+            </div>
+            <div class="form-section">
                 <h3>課程圖片、海報與其他附件</h3>
-                <div class="form-section">
-                    <h5>根據正式課程內容，設計吸引同學點閱的圖片吧！</h5>
-                    <h5>提供圖片與附件時，若提供 Google 雲端硬碟的網址，請確保已經將檔案設為公開分享。<br>正常的情況下，提供圖片檔案網址時，會自動顯示圖片預覽。如果無法顯示，請檢查網址是否正確。</h5>
-                    <div class="form-row">
-                        <md-outlined-text-field id="coverImageUrl" label="封面圖片網址"
-                            supporting-text="必要，限單張，推薦 16:9 比例，其他比例會裁切" placeholder="可為圖片檔案網址或 Google Drive 圖片分享連結">
-                        </md-outlined-text-field>
-                    </div>
-                    <img id="coverPreview" class="image-preview">
-
-                    <div class="form-row">
-                        <md-outlined-text-field id="imageUrl" label="海報網址" supporting-text="非必要，限單張"
-                            placeholder="可為圖片檔案網址或 Google Drive 圖片分享連結">
-                        </md-outlined-text-field>
-                    </div>
-                    <img id="imagePreview" class="image-preview">
-
-                    <md-outlined-text-field id="otherAttachmentUrl" label="其他附件網址" supporting-text="非必要，限一個連結，不會顯示圖片預覽"
-                        placeholder="若有多個檔案或附件，請分享整個資料夾">
+                <h5>根據正式課程內容，設計吸引同學點閱的圖片吧！</h5>
+                <h5>提供圖片與附件時，若提供 Google 雲端硬碟的網址，請確保已經將檔案設為公開分享。<br>正常的情況下，提供圖片檔案網址時，會自動顯示圖片預覽。如果無法顯示，請檢查網址是否正確。</h5>
+                <div class="form-row">
+                    <md-outlined-text-field id="coverImageUrl" label="封面圖片網址"
+                        supporting-text="必要，限單張，推薦 16:9 比例，其他比例會裁切" placeholder="可為圖片檔案網址或 Google Drive 圖片分享連結">
                     </md-outlined-text-field>
                 </div>
+                <img id="coverPreview" class="image-preview">
 
+                <div class="form-row">
+                    <md-outlined-text-field id="imageUrl" label="海報網址" supporting-text="非必要，限單張"
+                        placeholder="可為圖片檔案網址或 Google Drive 圖片分享連結">
+                    </md-outlined-text-field>
+                </div>
+                <img id="imagePreview" class="image-preview">
+
+                <md-outlined-text-field id="otherAttachmentUrl" label="其他附件網址" supporting-text="非必要，限一個連結，不會顯示圖片預覽"
+                    placeholder="若有多個檔案或附件，請分享整個資料夾">
+                </md-outlined-text-field>
+            </div>
+            <div class="form-section">
                 <h3>課程簡介</h3>
                 <div class="form-row">
                     <md-outlined-text-field class="textarea-field" id="courseIntro" label="課程簡介" type="textarea"
                         rows="5" supporting-text="">
                     </md-outlined-text-field>
                 </div>
+            </div>
+            <div class="form-section">
                 <h3>課程大綱規劃</h3>
                 <h5>每列代表一節次，至少填寫一節次。<br>請依提案時的「每次上課時數」規劃課程一節次的時長（兩小時或三小時）。</h5>
+                <h5>提醒您，您提案時填寫預計辦理 <span id="courseCount_readonly">-</span> 場次，每次上課 <span
+                        id="courseHours_readonly">-</span>
+                    小時。</h5>
                 <div class="table-container">
                     <table id="syllabusTable">
                         <thead>
@@ -167,94 +181,91 @@
                         <md-filled-button id="addSyllabusRow">新增課程大綱</md-filled-button>
                     </div>
                 </div>
+            </div>
+            <div class="form-section">
                 <h3>講師資訊</h3>
-                <h5>至少填寫一位講師。</h5>
+                <h5>至少一位講師。</h5>
                 <div id="lecturerContainer"></div>
                 <div class="button-right">
                     <md-filled-button id="addLecturer">新增講師</md-outlined-button>
                 </div>
             </div>
+        </div>
+        <p>以上欄位為提案成功後需要新增或修改的資訊。</p>
+        <p>若您想更新過去的資料，仍可以繼續往下更新過去填寫過的內容。</p>
+        <p>填寫完畢或想暫存內容，<b>請記得要下載檔案 (.txt)</b>！</p>
+        <div><md-filled-button id="saveButton">下載申請單</md-filled-button>
+            <md-outlined-button id="loadButton">讀取申請單</md-filled-button>
+        </div>
+        <hr>
+        <p><b>請注意：過去提案內容可能會顯示在網站中，且部分資訊無法更改。</b></p>
+        <p>若您想要更新過去的資料，請繼續往下填寫，並在最後點選「下載申請單」儲存檔案。</p>
+        <h2>提案人資訊<md-icon>lock</md-icon></h2>
+        <div class="form-row">
+            <md-outlined-text-field id="applyName" label="提案人" placeholder="請填寫全名" readonly>
+            </md-outlined-text-field>
+            <md-outlined-text-field id="applyId" label="提案人學號" placeholder="BXXXXXXXXX" readonly>
+            </md-outlined-text-field>
+            <md-outlined-text-field id="applyDepartment" label="提案人系級" placeholder="XX系(所) 大X" readonly>
+            </md-outlined-text-field>
+        </div>
+        <div class="form-row">
+            <md-outlined-text-field id="applyPhone" label="提案人聯絡電話" type="number" placeholder="09XXXXXXXX" readonly>
+            </md-outlined-text-field>
+            <md-outlined-text-field id="applyMail" label="提案人 E-mail" type="email" placeholder="XXX@gmail.com" readonly>
+            </md-outlined-text-field>
+        </div>
 
-            <p>以上欄位為提案成功後需要新增或修改的資訊。</p>
-            <p>若您想更新過去的資料，仍可以繼續往下更新過去填寫過的內容。</p>
-            <p>填寫完畢或想暫存內容，<b>請記得要下載檔案 (.txt)</b>！</p>
-            <div><md-filled-button id="saveButton">下載申請單</md-filled-button>
-                <md-outlined-button id="loadButton">讀取申請單</md-filled-button>
-            </div>
-            <hr>
-            <p><b>請注意：過去提案繳交的內容會顯示在網站中，且部分資訊無法更改。</b></p>
-            <p>若您想要更新過去的資料，請繼續往下填寫，並在最後點選「下載申請單」儲存檔案。</p>
-            <h2>提案人資訊<md-icon>lock</md-icon></h2>
-            <div class="form-row">
-                <md-outlined-text-field id="applyName" label="提案人" placeholder="請填寫全名" readonly>
-                </md-outlined-text-field>
-                <md-outlined-text-field id="applyId" label="提案人學號" placeholder="BXXXXXXXXX" readonly>
-                </md-outlined-text-field>
-                <md-outlined-text-field id="applyDepartment" label="提案人系級" placeholder="XX系(所) 大X" readonly>
+        <h2 class="display-none">課程基本資訊</h2>
+        <div class="registration-period display-none">
+            <div class="date-picker-container">
+                <label>預計活動辦理日期</label>
+                <md-outlined-text-field id="registrationYear" label="年" type="number" value="Short" suffix-text="年"
+                    errorText="應填寫正確年份">
                 </md-outlined-text-field>
             </div>
-            <div class="form-row">
-                <md-outlined-text-field id="applyPhone" label="提案人聯絡電話" type="number" placeholder="09XXXXXXXX" readonly>
-                </md-outlined-text-field>
-                <md-outlined-text-field id="applyMail" label="提案人 E-mail" type="email" placeholder="XXX@gmail.com"
-                    readonly>
-                </md-outlined-text-field>
+            <div class="date-picker-container">
+                <label> </label>
+                <md-outlined-select id="registrationMonth" label="月">
+                    <md-select-option value="1">
+                        <div slot="headline">1</div>
+                    </md-select-option>
+                    <md-select-option value="2">
+                        <div slot="headline">2</div>
+                    </md-select-option>
+                    <md-select-option value="3">
+                        <div slot="headline">3</div>
+                    </md-select-option>
+                    <md-select-option value="4">
+                        <div slot="headline">4</div>
+                    </md-select-option>
+                    <md-select-option value="5">
+                        <div slot="headline">5</div>
+                    </md-select-option>
+                    <md-select-option value="6">
+                        <div slot="headline">6</div>
+                    </md-select-option>
+                    <md-select-option value="7">
+                        <div slot="headline">7</div>
+                    </md-select-option>
+                    <md-select-option value="8">
+                        <div slot="headline">8</div>
+                    </md-select-option>
+                    <md-select-option value="9">
+                        <div slot="headline">9</div>
+                    </md-select-option>
+                    <md-select-option value="10">
+                        <div slot="headline">10</div>
+                    </md-select-option>
+                    <md-select-option value="11">
+                        <div slot="headline">11</div>
+                    </md-select-option>
+                    <md-select-option value="12">
+                        <div slot="headline">12</div>
+                    </md-select-option>
+                </md-outlined-select>
             </div>
-
-            <h2>課程基本資訊</h2>
-            <div class="form-row">
-                <md-outlined-text-field id="courseName" label="課程名稱">
-                </md-outlined-text-field>
-            </div>
-            <div class="registration-period display-none">
-                <div class="date-picker-container">
-                    <label>預計活動辦理日期</label>
-                    <md-outlined-text-field id="registrationYear" label="年" type="number" value="Short" suffix-text="年"
-                        errorText="應填寫正確年份">
-                    </md-outlined-text-field>
-                </div>
-                <div class="date-picker-container">
-                    <label> </label>
-                    <md-outlined-select id="registrationMonth" label="月">
-                        <md-select-option value="1">
-                            <div slot="headline">1</div>
-                        </md-select-option>
-                        <md-select-option value="2">
-                            <div slot="headline">2</div>
-                        </md-select-option>
-                        <md-select-option value="3">
-                            <div slot="headline">3</div>
-                        </md-select-option>
-                        <md-select-option value="4">
-                            <div slot="headline">4</div>
-                        </md-select-option>
-                        <md-select-option value="5">
-                            <div slot="headline">5</div>
-                        </md-select-option>
-                        <md-select-option value="6">
-                            <div slot="headline">6</div>
-                        </md-select-option>
-                        <md-select-option value="7">
-                            <div slot="headline">7</div>
-                        </md-select-option>
-                        <md-select-option value="8">
-                            <div slot="headline">8</div>
-                        </md-select-option>
-                        <md-select-option value="9">
-                            <div slot="headline">9</div>
-                        </md-select-option>
-                        <md-select-option value="10">
-                            <div slot="headline">10</div>
-                        </md-select-option>
-                        <md-select-option value="11">
-                            <div slot="headline">11</div>
-                        </md-select-option>
-                        <md-select-option value="12">
-                            <div slot="headline">12</div>
-                        </md-select-option>
-                    </md-outlined-select>
-                </div>
-            </div>
+        </div>
         </div>
 
         <!-- 課程內容區塊 -->
@@ -271,7 +282,11 @@
                 <div id="tagContainer" class="chip-container"></div>
             </div>
             <h3>募課資料<md-icon>lock</md-icon></h3>
-            <div class="form-row">
+            <p><span class="title">學生需要參與所有場次才可獲得微學分：</span><span id="coursePart_readonly" label="多場次活動">
+                </span></p>
+            <p><span class="title">活動提供餐點：</span><span id="courseDiet_readonly" label="提供餐點">
+                </span></p>
+            <div class="form-row display-none">
                 <md-outlined-select id="courseHours" label="每次上課時數">
                     <md-select-option value="2">
                         <div slot="headline">2 小時</div>

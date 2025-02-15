@@ -86,6 +86,19 @@ function createLecturerSection() {
         </div>
         <div class="form-row">
             <md-outlined-text-field 
+                class="lecturer-course"
+                label="簡述講者課程安排綱要" 
+                type="textarea" 
+                rows="3">
+            </md-outlined-text-field>
+        </div>
+        <div class="form-row">
+            <md-outlined-text-field class="lecturer-hour" label="預計授課小時數" type="number" value="Short" suffix-text="小時"
+                            errorText="應填寫正確數字（小時）">
+            </md-outlined-text-field>
+        </div>
+        <div class="form-row">
+            <md-outlined-text-field 
                 class="lecturer-link"
                 label="相關連結" 
                 supporting-text="限一個連結"
@@ -279,6 +292,7 @@ document.querySelectorAll('#saveButton').forEach(button => {
                 課程簡介: handleLineBreaks(document.getElementById('courseIntro').value, true),
                 多節次活動: document.getElementById('coursePart').value,
                 提供餐點: document.getElementById('courseDiet').value,
+                預計辦理場次數: document.getElementById('courseCount').value,
                 課程大綱: getSyllabusData(),
                 其他附件網址: document.getElementById('otherAttachmentUrl').value,
             };
@@ -354,6 +368,8 @@ function getLecturerData() {
             職稱: container.querySelector('.lecturer-title').value,
             專長: Array.from(container.expertiseSet || []),
             介紹: container.querySelector('.lecturer-intro').value,
+            預計授課小時數: container.querySelector('.lecturer-hour').value || '',
+            課程安排綱要: container.querySelector('.lecturer-course').value || '',
             相關連結: container.querySelector('.lecturer-link').value
         };
     });
@@ -433,6 +449,12 @@ function loadLecturerData(lecturers) {
         section.querySelector('.lecturer-unit').value = lecturer.單位;
         section.querySelector('.lecturer-title').value = lecturer.職稱;
         section.querySelector('.lecturer-intro').value = lecturer.介紹;
+        if ('課程安排綱要' in lecturer) {
+            section.querySelector('.lecturer-course').value = lecturer.課程安排綱要;
+        }
+        if ('預計授課小時數' in lecturer) {
+            section.querySelector('.lecturer-hour').value = lecturer.預計授課小時數;
+        }
         section.querySelector('.lecturer-link').value = lecturer.相關連結;
 
         // 填入專長標籤
@@ -501,6 +523,9 @@ function loadCourseData(data) {
     loadLecturerData(data.講師資訊);
 
     // 課程大綱
+    if ('預計辦理場次數' in data) {
+        document.getElementById('courseCount').value = data.預計辦理場次數;
+    }
     document.getElementById('coursePart').value = data.多節次活動;
     document.getElementById('courseDiet').value = data.提供餐點;
     const syllabusTable = document.querySelector('#syllabusTable tbody');

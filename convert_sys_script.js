@@ -26,14 +26,12 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function generateHtmlContent(course) {
-    // 創建一個輔助函數來處理換行符
     const convertNewlines = (text) => {
         return text ? text.replace(/\n/g, '<br>') : '';
     };
 
     let html = `<link href="/static/file/367/1367/img/4571/course_style.css" rel="stylesheet" />`;
 
-    // 課程簡介
     if (course["課程報名連結"]) {
         html += `
                 <p style="text-align: center;"><a class="courseLink" href="${course["課程報名連結"]}" target="_blank">報名課程</a></p>
@@ -252,27 +250,27 @@ function displayResult(html, course) {
     const downloadContainer = document.createElement('div');
     downloadContainer.className = 'download-container';
     const downloadTitle = document.createElement('h2');
-    downloadTitle.textContent = '圖片與附件 (請手動檢查與下載)';
+    downloadTitle.textContent = '圖片與附件（部分支援自動下載，如開啟新分頁請手動下載）';
     downloadContainer.appendChild(downloadTitle);
 
     // 檢查並創建下載按鈕
     if (course["封面圖片網址"]) {
         const coverButton = document.createElement('md-filled-button');
-        coverButton.textContent = '打開封面圖片';
+        coverButton.textContent = '封面圖片';
         coverButton.onclick = () => openAttachment(course["封面圖片網址"], '封面圖片');
         downloadContainer.appendChild(coverButton);
     }
 
     if (course["圖片網址"]) {
         const imageButton = document.createElement('md-filled-button');
-        imageButton.textContent = '打開附加圖片';
+        imageButton.textContent = '附加圖片';
         imageButton.onclick = () => openAttachment(course["圖片網址"], '圖片');
         downloadContainer.appendChild(imageButton);
     }
 
     if (course["其他附件網址"]) {
         const attachmentButton = document.createElement('md-filled-button');
-        attachmentButton.textContent = '打開其他附件';
+        attachmentButton.textContent = '其他附件';
         attachmentButton.onclick = () => openAttachment(course["其他附件網址"], '其他附件');
         downloadContainer.appendChild(attachmentButton);
     }
@@ -300,13 +298,51 @@ function displayResult(html, course) {
     resultDiv.appendChild(previewDiv);
 }
 
+function processGoogleDriveUrl(url) {
+    if (!url) return '';
+
+    // 檢查是否為 Google Drive 網址
+    const driveRegex = /drive\.google\.com\/file\/d\/(.*?)(?:\/|$|\?)/;
+    const match = url.match(driveRegex);
+
+    if (match && match[1]) {
+        return {
+            url: `https://drive.google.com/uc?export=download&id=${match[1]}`,
+            isGoogleDrive: true
+        };
+    }
+
+    return {
+        url: url,
+        isGoogleDrive: false
+    };
+}
+
 // 下載的輔助函數
 async function openAttachment(url) {
     try {
-        // 在新標籤頁中打開網址
-        window.open(url, '_blank');
+        const processedUrl = processGoogleDriveUrl(url);
+
+        if (processedUrl.isGoogleDrive) {
+            const downloadLink = document.createElement('a');
+            downloadLink.href = processedUrl.url;
+            downloadLink.download = '';
+            downloadLink.style.display = 'none';
+            downloadLink.target = '_blank';
+            document.body.appendChild(downloadLink);
+
+            downloadLink.click();
+
+            setTimeout(() => {
+                document.body.removeChild(downloadLink);
+            }, 100);
+            alert('檔案下載完成，請檢查下載資料夾。');
+        } else {
+            window.open(processedUrl.url, 'popup', 'width=800,height=600');
+            alert('非 Google 雲端硬碟單一檔案，已開啟網頁，請手動下載。');
+        }
     } catch (error) {
-        console.error('打開時發生錯誤:', error);
-        alert('打開失敗，請稍後再試');
+        console.error('處理檔案時發生錯誤:', error);
+        alert('下載連結處理失敗，請稍後再試。');
     }
 }

@@ -148,6 +148,9 @@ function showMessage(type, message) {
     const icon = document.createElement('md-icon');
     const messageSpan = document.createElement('span');
 
+    const courseForm_load = document.getElementById('courseForm');
+    courseForm_load.className = 'unload loaded';
+
     snackbar.className = 'snackbar';
     snackbarcontainer.className = 'snackbar-container';
     messageSpan.className = 'snackbar-message';

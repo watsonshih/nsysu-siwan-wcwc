@@ -226,6 +226,9 @@ function showMessage(type, message) {
     const icon = document.createElement('md-icon');
     const messageSpan = document.createElement('span');
 
+    const courseForm_load = document.getElementById('courseForm');
+    courseForm_load.className = 'unload loaded';
+
     snackbar.className = 'snackbar';
     snackbarcontainer.className = 'snackbar-container';
     messageSpan.className = 'snackbar-message';
@@ -481,6 +484,12 @@ function loadCourseData(data) {
     document.getElementById('applyDepartment').value = data.提案人系級;
     document.getElementById('applyPhone').value = data.提案人電話;
     document.getElementById('applyMail').value = data.提案人Mail;
+    document.getElementById('applyName_readonly').innerText = data.提案人;
+    document.getElementById('applyId_readonly').innerText = data.提案人學號;
+    document.getElementById('applyDepartment_readonly').innerText = data.提案人系級;
+    document.getElementById('applyPhone_readonly').innerText = data.提案人電話
+    document.getElementById('applyMail_readonly').innerText = data.提案人Mail;
+
     document.getElementById('courseId').value = data.課程編號;
     document.getElementById('courseName').value = data.課程名稱;
     if (data.課程報名連結) {
@@ -489,8 +498,11 @@ function loadCourseData(data) {
 
     // 課程內容
     document.getElementById('motivation').value = handleLineBreaks(data.開課動機, false);
+    document.getElementById('motivation_readonly').innerText = handleLineBreaks(data.開課動機, false);
     document.getElementById('objectives').value = handleLineBreaks(data.課程目標, false);
+    document.getElementById('objectives_readonly').innerText = handleLineBreaks(data.開課動機, false);
     document.getElementById('expectedResults').value = handleLineBreaks(data.預期成果, false);
+    document.getElementById('expectedResults_readonly').innerText = handleLineBreaks(data.開課動機, false);
     document.getElementById('courseIntro').value = handleLineBreaks(data.課程簡介, false);
 
     // 圖片
@@ -515,7 +527,7 @@ function loadCourseData(data) {
     // 課程大綱
     document.getElementById('courseHours').value = data.每次上課時數;
     document.getElementById('courseHours_readonly').innerText = data.每次上課時數;
-    document.getElementById('courseCount_readonly').innerText = data.預計辦理場次數;
+    document.getElementById('courseCount_readonly').innerText = data.預計辦理場次數 || '-';
     document.getElementById('coursePart').value = data.多節次活動;
     document.getElementById('coursePart_readonly').innerText = data.多節次活動;
     document.getElementById('courseDiet').value = data.提供餐點;

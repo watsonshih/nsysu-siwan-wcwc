@@ -19,11 +19,24 @@ body {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    font-size: 1rem;
+    font-size: 1.2em;
+    line-height: 1.8;
 }
 
 .title {
     font-weight: bold;
+}
+
+.unload {
+    filter: blur(20px) grayscale(100%);
+    transition: all .5s linear;
+    height: 0px;
+    overflow: hidden;
+}
+
+.unload.loaded {
+    filter: blur(0px) grayscale(0%);
+    height: auto;
 }
 
 h1 {

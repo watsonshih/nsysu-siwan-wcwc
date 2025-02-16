@@ -94,11 +94,11 @@
     <h1>學生募課趣 - <br class="mob_br">課程上架資料填寫</h1>
     <p><b>恭喜您的募課提案已通過核可！</b></p>
     <p>在上架課程前，您需要完善課程資料，讓同學更了解你的課程。</p>
-    <p>您可以透過<b>「讀取申請單」</b>繼續編輯、完善之前提案的內容，無須重新填寫。</p>
+    <p>請先按下右上角的<b>「讀取申請單」</b>按鈕，載入上次繳交的提案申請單，方可繼續編輯、完善之前提案的內容。</p>
     <p>填寫完成後，請記得下載並回傳檔案。</p>
     <p>請注意：本網站不會保存任何資料，如果無法一次完成填寫，請先下載申請單，下次再讀取繼續填寫。</p>
 
-    <form id="courseForm" onsubmit="return false;">
+    <form id="courseForm" class="unload" onsubmit="return false;">
         <!-- 基本資訊區塊 -->
         <div class="form-section">
 
@@ -160,7 +160,7 @@
             </div>
             <div class="form-section">
                 <h3>課程大綱規劃</h3>
-                <h5>每列代表一節次，至少填寫一節次。<br>請依提案時的「每次上課時數」規劃課程一節次的時長（兩小時或三小時）。</h5>
+                <h5>每列代表一節次，至少填寫一節次。<br>請依提案時的「每次上課時數」規劃課程一節次的時長。</h5>
                 <h5>提醒您，您提案時填寫預計辦理 <span id="courseCount_readonly">-</span> 場次，每次上課 <span
                         id="courseHours_readonly">-</span>
                     小時。</h5>
@@ -201,7 +201,12 @@
         <p><b>請注意：過去提案內容可能會顯示在網站中，且部分資訊無法更改。</b></p>
         <p>若您想要更新過去的資料，請繼續往下填寫，並在最後點選「下載申請單」儲存檔案。</p>
         <h2>提案人資訊<md-icon>lock</md-icon></h2>
-        <div class="form-row">
+        <p>提案人：<span id="applyName_readonly"></span> (<span id="applyId_readonly"></span><span
+                id="applyId_readonly"></span>)</p>
+        <p>提案人系級：<span id="applyDepartment_readonly"></span></p>
+        <p>提案人聯絡電話：<span id="applyPhone_readonly"></span></p>
+        <p>提案人 E-mail：<span id="applyMail_readonly"></span></p>
+        <div class="form-row display-none">
             <md-outlined-text-field id="applyName" label="提案人" placeholder="請填寫全名" readonly>
             </md-outlined-text-field>
             <md-outlined-text-field id="applyId" label="提案人學號" placeholder="BXXXXXXXXX" readonly>
@@ -209,7 +214,7 @@
             <md-outlined-text-field id="applyDepartment" label="提案人系級" placeholder="XX系(所) 大X" readonly>
             </md-outlined-text-field>
         </div>
-        <div class="form-row">
+        <div class="form-row display-none">
             <md-outlined-text-field id="applyPhone" label="提案人聯絡電話" type="number" placeholder="09XXXXXXXX" readonly>
             </md-outlined-text-field>
             <md-outlined-text-field id="applyMail" label="提案人 E-mail" type="email" placeholder="XXX@gmail.com" readonly>
@@ -266,7 +271,6 @@
                 </md-outlined-select>
             </div>
         </div>
-        </div>
 
         <!-- 課程內容區塊 -->
         <div class="form-section">
@@ -312,18 +316,24 @@
                     </md-select-option>
                 </md-outlined-select>
             </div>
-            <div class="form-row">
+            <p><b>開課動機</b></p>
+            <div id="motivation_readonly"></div>
+            <p><b>課程目標</b></p>
+            <div id="objectives_readonly"></div>
+            <p><b>預期學習成果</b></p>
+            <div id="expectedResults_readonly"></div>
+            <div class="form-row display-none">
                 <md-outlined-text-field class="textarea-field" id="motivation" label="開課動機" type="textarea" rows="5"
                     readonly>
                 </md-outlined-text-field>
             </div>
-            <div class="form-row">
+            <div class="form-row display-none">
                 <md-outlined-text-field class="textarea-field" id="objectives" label="課程目標" type="textarea" rows="5"
                     readonly helper-text="使用換行來分隔不同目標">
                 </md-outlined-text-field>
             </div>
 
-            <div class="form-row">
+            <div class="form-row display-none">
                 <md-outlined-text-field class="textarea-field" id="expectedResults" label="預期學習成果" type="textarea"
                     rows="5" helper-text="使用換行來分隔不同成果" readonly>
                 </md-outlined-text-field>
@@ -335,9 +345,9 @@
         </div>
         <hr>
 
+        <div><md-filled-button href="#top">回到上方</md-filled-button></div>
 
     </form>
-    <div><md-filled-button href="#top">回到上方</md-filled-button></div>
 
     <script src="courseEditAll_sys_script.js"></script>
 </body>

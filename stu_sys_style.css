@@ -15,7 +15,8 @@ body {
     padding: 20px;
     max-width: 1400px;
     margin: 0 auto;
-    font-size: 1.1rem;
+    font-size: 1.3em;
+    line-height: 1.6;
 }
 
 a {
@@ -25,6 +26,18 @@ a {
 
 .display-none {
     display: none !important;
+}
+
+.unload {
+    filter: blur(20px) grayscale(100%);
+    transition: all 1.2s linear;
+    height: 40px;
+    overflow: hidden;
+}
+
+.unload.loaded {
+    filter: blur(0px) grayscale(0%);
+    height: auto;
 }
 
 hr {

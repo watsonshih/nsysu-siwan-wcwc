@@ -64,11 +64,13 @@
                     src="https://siwan.nsysu.edu.tw/static/file/29/1029/img/4414/wcwc-logo-all-color.svg"
                     width="200px"></a></div>
         <div class="action-buttons">
-            <md-filled-text-field id="courseId" label="申請課程編號 (自動產生)" readonly>
+            <md-filled-text-field id="courseId" class="display-none" label="申請課程編號 (自動產生)" readonly>
             </md-filled-text-field>
             <md-filled-button id="saveButton">下載申請單</md-filled-button>
-            <md-outlined-button id="loadButton">讀取申請單</md-filled-button>
-                <input type="file" id="fileInput" accept=".txt" style="display: none">
+            <md-outlined-button id="loadButton">讀取申請單</md-outlined-button>
+            <input type="file" id="fileInput" accept=".txt" style="display: none">
+            <md-filled-button id="goToSendButton" href="https://bookho.nsysu.edu.tw/p/423-1367-4372.php"
+                target="_blank">前往提交</md-filled-button>
         </div>
     </div>
 
@@ -79,8 +81,9 @@
                 alt="progress">
         </div>
         <div class="stu_form_progress">
-            <img src="https://bookho.nsysu.edu.tw/static/file/367/1367/img/4571/stu_course_progress_2_todo.svg"
-                alt="progress">
+            <a href="https://bookho.nsysu.edu.tw/p/423-1367-4372.php" target="_blank"><img
+                    src="https://bookho.nsysu.edu.tw/static/file/367/1367/img/4571/stu_course_progress_2_todo.svg"
+                    alt="progress"></a>
         </div>
         <div class="stu_form_progress">
             <img src="https://bookho.nsysu.edu.tw/static/file/367/1367/img/4571/stu_course_progress_3_todo.svg"
@@ -93,8 +96,9 @@
     </div>
 
     <h1>學生募課趣 - <br class="mob_br">募課提案申請單</h1>
-    <p>請填寫以下資料，完成填寫後，請按下「下載申請單」按鈕，並將申請單提供給承辦人員。</p>
-    <p>想要修改之前下載的申請單，請按下「讀取申請單」按鈕，上傳之前儲存的申請單檔案。</p>
+    <p>請填寫以下資料，完成填寫後，請按下「下載申請單」按鈕，<a href="https://bookho.nsysu.edu.tw/p/423-1367-4372.php"
+            target="_blank">並至提案繳交系統送出檔案</a>。</p>
+    <p>想要修改之前下載的申請單，請按下「讀取申請單」按鈕，上傳之前的申請單檔案。</p>
     <p>請注意：本網站不會保存任何資料，如果無法一次完成填寫，請先下載申請單，下次再讀取繼續填寫。</p>
 
     <form id="courseForm" onsubmit="return false;">
@@ -283,8 +287,11 @@
         </div>
 
         <p>填寫完畢或想暫存內容，<b>請記得要下載檔案 (.txt)</b>！</p>
-        <div><md-filled-button id="saveButton">下載申請單</md-filled-button>
-            <md-outlined-button id="loadButton">讀取申請單</md-filled-button>
+        <div class="action-buttons">
+            <md-filled-button id="saveButton">下載申請單</md-filled-button>
+            <md-outlined-button id="loadButton">讀取申請單</md-outlined-button>
+            <md-filled-button id="goToSendButton" href="https://bookho.nsysu.edu.tw/p/423-1367-4372.php"
+                target="_blank">前往提交</md-filled-button>
         </div>
         <hr>
 

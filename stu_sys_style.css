@@ -80,9 +80,9 @@ h5 {
     margin: 40px 0;
 }
 
-.stu_form_progress {
+/* .stu_form_progress {
     display: none;
-}
+} */
 
 .current {
     display: block;
@@ -100,7 +100,13 @@ h5 {
 
 @media(max-width: 992px) {
     .stu_form_progress_grid {
-        grid-template-columns: repeat(1, 1fr);
+        overflow-x: scroll;
+        width: 100vw;
+        scrollbar-width: none;
+    }
+
+    .stu_form_progress img {
+        width: 60vw;
     }
 }
 
@@ -203,6 +209,7 @@ th {
     display: flex;
     gap: 16px;
     margin-top: 24px;
+    flex-wrap: wrap;
 }
 
 .lecturer-section {

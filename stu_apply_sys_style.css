@@ -20,6 +20,7 @@
 
     --border-color: #e0e0e0;
     --border-color-gradient-25: linear-gradient(90deg, #1BAAD1 0%, #a9fdb1 13%, #e0e0e0 25%, #e0e0e0 100%);
+    --border-color-gradient-100: linear-gradient(90deg, #1BAAD1 0%, #a9fdb1 95%, #e0e0e0 98%, #e0e0e0 100%);
     --border-radius: 12px;
     --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
@@ -112,7 +113,7 @@ p {
 .unload {
     filter: blur(20px) grayscale(100%);
     transition: all .7s linear;
-    height: 40px;
+    height: 100px;
     overflow: hidden;
 }
 
@@ -257,6 +258,10 @@ p {
     z-index: 1;
 }
 
+.progress-line.gradient-100 {
+    background: var(--border-color-gradient-100);
+}
+
 .progress-link {
     text-decoration: none;
     display: flex;
@@ -344,6 +349,11 @@ p {
     margin-bottom: var(--spacing-lg);
 }
 
+.form-row-grid {
+    display: grid;
+    margin-bottom: var(--spacing-xl);
+}
+
 /* 新增輸入框樣式 */
 .input-field {
     display: flex;
@@ -429,10 +439,10 @@ p {
 
 .image-upload-field {
     flex: 1;
-    min-width: 300px;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
+    width: 100%;
 }
 
 .image-preview-container {
@@ -651,6 +661,7 @@ p {
     }
 
     .syllabus-table tr {
+        margin: var(--spacing-md) 0;
         display: grid;
         max-width: 100vw;
         border: 1px solid #ddd;

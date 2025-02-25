@@ -52,9 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 設置年份自動填充
     document.getElementById('registrationYear').value = new Date().getFullYear();
     document.getElementById('registrationMonth').value = new Date().getUTCMonth() + 2;
-    console.log(document.getElementById('registrationMonth'));
 
-    // 添加提示信息
+    // 添加提示
     const tooltips = document.querySelectorAll('[data-tooltip]');
     if (tooltips.length > 0) {
         initializeTooltips(tooltips);
@@ -287,6 +286,52 @@ function processGoogleDriveUrl(url) {
     return url;
 }
 
+// 修改提示訊息功能
+function showMessage(type, message) {
+    const snackbar = document.createElement('div');
+    const snackbarcontainer = document.createElement('div');
+    const icon = document.createElement('md-icon');
+    const messageSpan = document.createElement('span');
+
+    const courseForm_load = document.getElementById('courseForm');
+    courseForm_load.className = 'unload loaded';
+
+    snackbar.className = 'snackbar';
+    snackbarcontainer.className = 'snackbar-container';
+    messageSpan.className = 'snackbar-message';
+    messageSpan.textContent = message;
+    icon.slot = 'icon';
+
+    if (type === 'success') {
+        icon.textContent = 'check_circle';
+        snackbar.style.setProperty('background', '#e8f5e9');
+        snackbar.style.setProperty('color', '#2e7d32');
+        icon.style.color = '#2e7d32';
+    } else {
+        icon.textContent = 'error';
+        snackbar.style.setProperty('background', '#ffebee');
+        snackbar.style.setProperty('color', '#d32f2f');
+        icon.style.color = '#d32f2f';
+    }
+
+    snackbar.appendChild(snackbarcontainer);
+    snackbarcontainer.appendChild(icon);
+    snackbarcontainer.appendChild(messageSpan);
+    document.body.appendChild(snackbar);
+
+    // 顯示 snackbar
+    snackbar.classList.add('show');
+
+    // 移除
+    setTimeout(() => {
+        snackbar.classList.remove('show');
+        setTimeout(() => {
+            snackbar.remove();
+        }, 600);
+    }, 3000);
+}
+
+
 // 課程大綱相關功能
 function addSyllabusRow() {
     const tbody = document.querySelector('#syllabusTable tbody');
@@ -394,14 +439,14 @@ function handleFileUpload(e) {
         try {
             const data = JSON.parse(e.target.result);
             loadCourseData(data);
-            showMessage('success', '讀取成功', '申請單已載入');
+            showMessage('success', '讀取成功');
         } catch (error) {
             console.error('讀取失敗:', error);
-            showMessage('error', '讀取失敗', '檔案格式錯誤');
+            showMessage('error', '讀取失敗');
         }
     };
     reader.onerror = () => {
-        showMessage('error', '讀取失敗', '無法讀取檔案');
+        showMessage('error', '讀取失敗');
     };
     reader.readAsText(file);
 }
@@ -570,7 +615,7 @@ function saveCourseData() {
         a.click();
         URL.revokeObjectURL(url);
 
-        showMessage('success', '下載成功', '申請單已下載');
+        showMessage('success', '下載成功');
 
         setTimeout(() => {
             if (confirm('申請單下載完成，是否前往送出提案？')) {
@@ -580,6 +625,6 @@ function saveCourseData() {
 
     } catch (error) {
         console.error('下載失敗:', error);
-        showMessage('error', '下載失敗', '請重試或聯繫管理員');
+        showMessage('error', '下載失敗');
     }
 }

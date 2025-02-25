@@ -109,6 +109,18 @@ p {
     }
 }
 
+.unload {
+    filter: blur(20px) grayscale(100%);
+    transition: all .7s linear;
+    height: 40px;
+    overflow: hidden;
+}
+
+.unload.loaded {
+    filter: blur(0px) grayscale(0%);
+    height: auto;
+}
+
 /* Header Styles */
 .main-header {
     background-color: var(--surface-color);
@@ -418,6 +430,9 @@ p {
 .image-upload-field {
     flex: 1;
     min-width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
 }
 
 .image-preview-container {
@@ -554,8 +569,6 @@ p {
     /* gap: 8px; */
     /* margin: var(--spacing-md) 0; */
 }
-
-
 
 .button-container {
     display: flex;
@@ -722,20 +735,23 @@ p {
 .snackbar {
     position: fixed;
     z-index: 999;
-    bottom: 30px;
+    top: 30px;
     left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    min-width: 250px;
+    transform: translateX(-50%) translateY(-100px);
+    min-width: 50px;
     border-radius: 4px;
     padding: var(--spacing-md) var(--spacing-lg);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
-    transition: transform 0.3s ease;
-    font-weight: 500;
+    font-weight: bold;
+    opacity: 0;
+    transition: all 0.5s ease;
 }
 
 .snackbar.show {
+    min-width: 300px;
+    opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
 
@@ -767,10 +783,6 @@ p {
         font-size: 0.8rem;
     }
 
-    .progress-line {
-        top: 20px;
-    }
-
     h1 {
         font-size: 2rem;
     }
@@ -798,9 +810,13 @@ p {
         flex-wrap: wrap;
     }
 
+    .progress-line {
+        top: 38px;
+    }
+
     .progress-container {
         overflow-x: auto;
-        padding-bottom: var(--spacing-md);
+        padding: var(--spacing-md) var(--spacing-lg);
     }
 
     .date-inputs {

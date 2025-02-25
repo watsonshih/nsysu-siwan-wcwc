@@ -59,6 +59,7 @@
 <body>
     <!-- 頁首 -->
     <header class="main-header">
+        <div id="courseForm"></div>
         <div class="container">
             <div class="header-content">
                 <div class="logo-container">
@@ -266,18 +267,16 @@
             </div>
             <div class="card-content">
                 <div class="tag-section">
-                    <label for="tagInput">跨領域類別標籤</label>
+                    <label for="tagInput">跨領域類別標籤 (至少 3 個)</label>
                     <div class="tag-input-container">
                         <div class="input-field" style="margin-bottom: 0;">
-                            <input type="text" id="tagInput" placeholder="新增標籤，按 Enter">
+                            <input type="text" id="tagInput" placeholder="按 Enter 或點擊 + 新增">
                         </div>
-                        <button id="addTagButton" class="button primary-button"
-                            style="height: 40px; width: 40px; border-radius: 50%; padding: 0;">
+                        <button id="addTagButton" class="button primary-button">
                             <i class="material-icons">add</i>
                         </button>
                     </div>
                     <div id="tagContainer" class="chip-container">
-                        <!-- 此處將由 JS 動態加入標籤 -->
                     </div>
                 </div>
 

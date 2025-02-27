@@ -294,11 +294,11 @@ function showMessage(type, message) {
     const messageSpan = document.createElement('span');
 
     const courseForm_load = document.getElementById('courseForm');
-    courseForm_load.className = 'unload loaded';
 
     snackbar.className = 'snackbar';
     if (type === 'success') {
         snackbar.classList.add('success');
+        courseForm_load.className = 'unload loaded';
     } else {
         snackbar.classList.add('error');
     }

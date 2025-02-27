@@ -726,9 +726,11 @@ p {
 }
 
 /* Utility Classes */
-.display-none {
-    display: none !important;
+.display-none,
+.mob-display {
+    display: none;
 }
+
 
 @media(max-width: 992px) {
 
@@ -739,6 +741,10 @@ p {
 
     .mob-display-none {
         display: none;
+    }
+
+    .mob-display {
+        display: inline-block;
     }
 }
 

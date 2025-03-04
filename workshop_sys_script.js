@@ -570,7 +570,7 @@ function generateFullCourseHtml() {
     // 課程簡介
     if (courseData.課程報名連結) {
         html += `
-                <p style="text-align: center;"><a class="lb" href="${courseData.課程報名連結}" target="_blank">報名課程</a></p>
+                <p style="text-align: center;"><a class="courseLink" href="${courseData.課程報名連結}" target="_blank">報名課程</a></p>
                 `
     }
 

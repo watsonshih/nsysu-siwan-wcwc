@@ -25,11 +25,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-function generateHtmlContent(course) {
-    const convertNewlines = (text) => {
-        return text ? text.replace(/\n/g, '<br>') : '';
-    };
+// 將 convertNewlines 移到全局作用域
+function convertNewlines(text) {
+    return text ? text.replace(/\\n|\n/g, '<br>') : '';
+}
 
+function generateHtmlContent(course) {
     let html = `<link href="/static/file/367/1367/img/4571/course_style.css" rel="stylesheet" />`;
 
     if (course["課程報名連結"]) {
@@ -149,11 +150,15 @@ function generateHtmlContent(course) {
     return html;
 }
 
-// 文字截斷函數
 function truncateText(text) {
     if (!text) return '';
-    if (text.length <= 48) return text;
-    return text.substring(0, 48) + '...';
+
+    // 先去掉換行符
+    const cleanText = text.replace(/\\n|\n/g, '');
+
+    // 再進行截斷
+    if (cleanText.length <= 48) return cleanText;
+    return cleanText.substring(0, 48) + '...';
 }
 
 function displayResult(html, course) {
